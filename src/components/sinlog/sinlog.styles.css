@@ -1,0 +1,89 @@
+.sinlog {
+  background-color: var(--clr-primary);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sinlog-container {
+  width: fit-content;
+  height: fit-content;
+  background-color: rgb(120, 48, 255);
+  border-radius: 5px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+.sinlog-options {
+  display: flex;
+  align-items: center;
+}
+.btn-login,
+.btn-signup {
+  width: 50%;
+  font-size: 20px;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 20px;
+}
+.sinlog-form {
+  margin: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sinlog-fdiv {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px 5px;
+  width: 250px;
+}
+.sinlog-form input,
+label {
+  width: 90%;
+  margin: 5px auto;
+}
+.sinlog-form input {
+  height: 25px;
+  padding: 5px 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}
+.sinlog-form label {
+  font-size: 18px;
+  font-weight: bold;
+}
+.sinlog-err p {
+  color: #000;
+  font-weight: bold;
+  font-size: 15px;
+  margin: 10px 0;
+}
+.sinlog-err-icon {
+  color: rgb(221, 2, 2);
+  font-size: 20px;
+  margin: 0 5px;
+}
+.btn-sinlog-submit {
+  background-color: rgb(103, 188, 245);
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 16px;
+  color: #fff;
+  transition: all 1s ease;
+}
+.btn-sinlog-submit:hover {
+  transform: scale(1.1);
+}
+.btn-sinlog-active {
+  background-color: rgba(255, 255, 255, 0.3);
+  color: #000;
+}
+.hidden {
+  display: none;
+}

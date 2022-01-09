@@ -1,0 +1,50 @@
+:root {
+  --clr-primary: rgb(58, 58, 58);
+  --clr-primary-highlight: rgb(90, 90, 90);
+  --clr-receiver: rgb(48, 48, 48);
+  --clr-sender: rgb(44, 138, 201);
+  --clr-primary-lighter: rgb(214, 214, 214);
+  --clr-btn-green: rgb(22, 224, 73);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-shadow: border-box;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: hidden;
+}
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+ul li {
+  text-decoration: none;
+  display: inline-block;
+}
+/* code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+} */
+/* Scroll-Bar */
+::-webkit-scrollbar-thumb {
+  background: rgb(109, 109, 109);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: #000;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}

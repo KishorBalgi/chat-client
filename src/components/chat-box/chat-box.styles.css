@@ -1,0 +1,19 @@
+.chat-box {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  right: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+}
+@media only screen and (max-width: 800px) {
+  .chat-box {
+    position: relative;
+    width: 100vw;
+    transform: translateX(0vw);
+    z-index: 10;
+  }
+}

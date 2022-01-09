@@ -1,0 +1,59 @@
+.App {
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+.chat-dis {
+  min-width: 300px;
+  max-width: 600px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  margin: 10px 60px;
+  border-radius: 10px;
+}
+.chat-txt {
+  width: fit-content;
+  color: #fff;
+  align-self: flex-start;
+  font-size: 15px;
+}
+.chat-time {
+  align-self: flex-end;
+  width: fit-content;
+  color: var(--clr-primary-lighter);
+  font-size: 12px;
+}
+@media only screen and (max-width: 1300px) {
+  .App {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+@media only screen and (max-width: 930px) {
+  .App {
+    grid-template-columns: 1fr 1fr;
+  }
+  .chat-dis {
+    margin: 10px 20px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .App {
+    grid-template-columns: 1fr 1fr;
+    overflow: scroll;
+  }
+  .chat-dis {
+    margin: 10px 10px;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .chat-dis {
+    min-width: 150px;
+    max-width: 250px;
+    margin: 10px 5px;
+  }
+}

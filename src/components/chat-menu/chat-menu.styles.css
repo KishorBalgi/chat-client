@@ -1,0 +1,36 @@
+.chat-menu {
+  width: 100%;
+  height: 100vh;
+  overflow-y: scroll;
+  background-color: rgb(58, 58, 58);
+}
+.chat-menu-bar {
+  position: fixed;
+  width: 25%;
+  z-index: 10;
+}
+@media only screen and (max-width: 1300px) {
+  .chat-menu-bar {
+    width: calc(100% / 3);
+  }
+}
+@media only screen and (max-width: 930px) {
+  .chat-menu-bar {
+    width: calc(100% / 2);
+  }
+}
+@media only screen and (max-width: 800px) {
+  .chat-menu-bar {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .chat-menu {
+    position: relative;
+    width: 100vw;
+    z-index: 5;
+  }
+  .chat-list {
+    margin-top: 90px;
+  }
+}

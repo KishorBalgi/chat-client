@@ -1,0 +1,11 @@
+.chat-right {
+  align-self: flex-end;
+  background-color: var(--clr-sender);
+  border-top-right-radius: 0px;
+  margin-left: 130px;
+}
+@media only screen and (max-width: 320px) {
+  .chat-right {
+    margin-left: 50px;
+  }
+}
