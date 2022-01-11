@@ -48,6 +48,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
     case userTypes.SIGNUP_FAILED:
       return {
         ...state,
+        signingUp: false,
         signupErr: action.payload,
       };
     // LOGOUT:

@@ -13,9 +13,17 @@ import {
   selectIsLoggingIn,
   selectIsSigningUp,
   selectLoginErr,
+  selectSignupErr,
 } from "../../redux/user/user.selector";
 import { createStructuredSelector } from "reselect";
-const Sinlog = ({ login, signup, isLoggingIn, isSigninigUp, loginErr }) => {
+const Sinlog = ({
+  login,
+  signup,
+  isLoggingIn,
+  isSigninigUp,
+  loginErr,
+  signupErr,
+}) => {
   const [name, setName] = useState(null);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
@@ -123,14 +131,14 @@ const Sinlog = ({ login, signup, isLoggingIn, isSigninigUp, loginErr }) => {
                 required
               />
             </div>
-            {loginErr ? (
+            {signupErr ? (
               <div className="sinlog-err">
                 <p>
                   <FontAwesomeIcon
                     icon={faExclamationCircle}
                     className="sinlog-err-icon"
                   />
-                  {loginErr}
+                  {signupErr}
                 </p>
               </div>
             ) : null}
@@ -151,6 +159,7 @@ const mapstateToProps = createStructuredSelector({
   isLoggingIn: selectIsLoggingIn,
   isSigninigUp: selectIsSigningUp,
   loginErr: selectLoginErr,
+  signupErr: selectSignupErr,
 });
 const mapDispatchToProps = (dispatch) => ({
   login: (email, password) => dispatch(login(email, password)),

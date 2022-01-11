@@ -98,17 +98,22 @@ export const signup = (name, email, password) => {
     )
       .then((res) => res.json())
       .then((data) => {
-        dispatch(
-          signupSuccessful({
-            username: name,
-            uid: data.user.uid,
-            img: data.user.img,
-          })
-        );
-        encryptStorage.setItem("user", {
-          email: email,
-          password: password,
-        });
+        if (data.status === "success") {
+          dispatch(
+            signupSuccessful({
+              username: name,
+              uid: data.user.uid,
+              img: data.user.img,
+            })
+          );
+          encryptStorage.setItem("user", {
+            email: email,
+            password: password,
+          });
+        } else if (data.status === "fail") {
+          console.log(data.status);
+          throw data.message;
+        }
       })
       .catch((err) => dispatch(signupFailed(err)));
   };

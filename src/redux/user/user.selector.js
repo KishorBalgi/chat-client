@@ -32,7 +32,7 @@ export const selectIsSignedUp = createSelector(
   (user) => user.signedUp
 );
 
-export const selectIsSignupErr = createSelector(
+export const selectSignupErr = createSelector(
   [selectUser],
   (user) => user.signupErr
 );
