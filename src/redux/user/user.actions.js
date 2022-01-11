@@ -57,10 +57,14 @@ export const checkSavedLogin = () => {
 // Login:
 export const login = (email, password) => {
   return async (dispatch) => {
+    if (!email || !password) {
+      return dispatch(loginFailed("All fields required."));
+    }
+    const data = { email: email, password: password };
     dispatch(loginStart());
     await fetch(
       "https://chat-box-app-server.herokuapp.com/api/v1/user/auth/login",
-      postOptions({ email: email, password: password })
+      postOptions(data)
     )
       .then((res) => res.json())
       .then((data) => {
@@ -74,7 +78,6 @@ export const login = (email, password) => {
           );
           encryptStorage.setItem("user", { email: email, password: password });
         } else if (data.status === "fail") {
-          console.log(data.status);
           throw data.message;
         }
       })
@@ -84,13 +87,16 @@ export const login = (email, password) => {
 // SignUp:
 export const signup = (name, email, password) => {
   return async (dispatch) => {
+    if (!name || !email || !password) {
+      return dispatch(signupFailed("All fields required."));
+    }
     const data = {
       name: name,
       email: email,
       password: password,
       createdAt: new Date().toISOString(),
     };
-
+    console.log(data);
     dispatch(signupStart());
     await fetch(
       "https://chat-box-app-server.herokuapp.com/api/v1/user/auth/signup",
@@ -111,7 +117,6 @@ export const signup = (name, email, password) => {
             password: password,
           });
         } else if (data.status === "fail") {
-          console.log(data.status);
           throw data.message;
         }
       })
