@@ -2,16 +2,6 @@ import { userTypes } from "./user.types";
 import { encryptStorage } from "../../utils/encrypt_storage/encryptStorage";
 import axios from "axios";
 
-// Options:
-const postOptions = (data) => ({
-  method: "POST",
-  headers: {
-    Accept: "application/json, text/plain, */*",
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify(data),
-});
-
 export const loginStart = () => ({
   type: userTypes.LOGIN_START,
 });
@@ -47,7 +37,6 @@ export const logoutSuccessful = () => ({
 export const checkSavedLogin = () => {
   return (dispatch) => {
     const user = encryptStorage.getItem("user");
-    console.log(user);
     if (user !== undefined) {
       dispatch(login(user.email, user.password));
     } else {
@@ -66,10 +55,10 @@ export const login = (email, password) => {
     try {
       const res = await axios({
         method: "POST",
-        url: "http://localhost:8000/api/v1/user/auth/login",
+        url: "https://chat-box-app-server.herokuapp.com/api/v1/user/auth/login",
         data: data,
       });
-      console.log(res.data);
+      console.log(res);
       if (res.data.status === "success") {
         const user = res.data.data;
 
@@ -84,16 +73,6 @@ export const login = (email, password) => {
     } catch (err) {
       dispatch(loginFailed(err));
     }
-    // .post("http://localhost:8000/api/v1/user/auth/login")
-    // .then((data) => {
-    //   console.log(data);
-    //
-    // encryptStorage.setItem("user", { email: email, password: password });
-    // } else if (data.status === "fail") {
-    //   throw data.message;
-    // }
-    // })
-    // .catch((err) => dispatch(loginFailed(err)));
   };
 };
 // SignUp:
