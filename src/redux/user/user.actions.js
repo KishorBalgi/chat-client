@@ -1,5 +1,6 @@
 import { userTypes } from "./user.types";
 import { encryptStorage } from "../../utils/encrypt_storage/encryptStorage";
+import axios from "axios";
 
 // Options:
 const postOptions = (data) => ({
@@ -62,26 +63,37 @@ export const login = (email, password) => {
     }
     const data = { email: email, password: password };
     dispatch(loginStart());
-    await fetch(
-      "https://chat-box-app-server.herokuapp.com/api/v1/user/auth/login",
-      postOptions(data)
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.status === "success") {
-          dispatch(
-            loginSuccessful({
-              username: data.user.name,
-              uid: data.user.uid,
-              img: data.user.img,
-            })
-          );
-          encryptStorage.setItem("user", { email: email, password: password });
-        } else if (data.status === "fail") {
-          throw data.message;
-        }
-      })
-      .catch((err) => dispatch(loginFailed(err)));
+    try {
+      const res = await axios({
+        method: "POST",
+        url: "http://localhost:8000/api/v1/user/auth/login",
+        data: data,
+      });
+      console.log(res.data);
+      if (res.data.status === "success") {
+        const user = res.data.data;
+
+        dispatch(
+          loginSuccessful({
+            username: user.name,
+            uid: user.uid,
+            img: user.img,
+          })
+        );
+      }
+    } catch (err) {
+      dispatch(loginFailed(err));
+    }
+    // .post("http://localhost:8000/api/v1/user/auth/login")
+    // .then((data) => {
+    //   console.log(data);
+    //
+    // encryptStorage.setItem("user", { email: email, password: password });
+    // } else if (data.status === "fail") {
+    //   throw data.message;
+    // }
+    // })
+    // .catch((err) => dispatch(loginFailed(err)));
   };
 };
 // SignUp:
@@ -98,11 +110,9 @@ export const signup = (name, email, password) => {
     };
     console.log(data);
     dispatch(signupStart());
-    await fetch(
-      "https://chat-box-app-server.herokuapp.com/api/v1/user/auth/signup",
-      postOptions(data)
-    )
-      .then((res) => res.json())
+    await axios
+      .post("http://localhost:8000/api/v1/user/auth/signup")
+      // .then((res) => res.json())
       .then((data) => {
         if (data.status === "success") {
           dispatch(
