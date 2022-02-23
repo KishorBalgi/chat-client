@@ -17,7 +17,6 @@ const ProfileBar = ({ userData, showProfile, showSettings }) => {
     <div className="profile-bar">
       <motion.img
         whileHover={{ scale: 1.2 }}
-        whileTap={{ scale: 0.8 }}
         className="profile-bar-img"
         src={userData.img}
         onClick={() => showProfile(true)}

@@ -9,7 +9,6 @@
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
-    "axios": "^0.26.0",
     "dotenv": "^16.0.0",
     "encrypt-storage": "^2.2.6",
     "framer-motion": "^6.2.7",

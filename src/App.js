@@ -3,6 +3,7 @@ import "./App.css";
 import { ChatMenu } from "./components/chat-menu/chat-menu.component";
 import { ChatBox } from "./components/chat-box/chat-box.component";
 import Sinlog from "./components/sinlog/sinlog.component";
+import { motion } from "framer-motion";
 // Redux:
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
@@ -13,6 +14,7 @@ function App({ isLoggedIn, checkSavedLogin }) {
   if (isLoggedIn) {
     return (
       <div className="App">
+        <motion.div className="alert"></motion.div>
         <ChatMenu />
         <ChatBox />
       </div>
@@ -21,6 +23,7 @@ function App({ isLoggedIn, checkSavedLogin }) {
     checkSavedLogin();
     return (
       <div className="App">
+        <motion.div className="alert"></motion.div>
         <Sinlog />
       </div>
     );

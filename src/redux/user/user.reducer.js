@@ -8,6 +8,9 @@ const INITIAL_STATE = {
   signingUp: false,
   signedUp: false,
   signupErr: null,
+  updating: null,
+  updateSuccess: null,
+  updateErr: null,
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -56,6 +59,26 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         loggedIn: false,
+      };
+    // Update:
+    case userTypes.UPDATING:
+      return {
+        ...state,
+        updating: true,
+      };
+    case userTypes.UPDATE_SUCCESSFUL:
+      return {
+        ...state,
+        updating: false,
+        updateSuccess: true,
+        userData: action.payload,
+      };
+    case userTypes.UPDATE_FAILED:
+      return {
+        ...state,
+        updating: false,
+        updateSuccess: false,
+        updateErr: action.payload,
       };
     default:
       return state;

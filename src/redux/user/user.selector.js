@@ -36,3 +36,17 @@ export const selectSignupErr = createSelector(
   [selectUser],
   (user) => user.signupErr
 );
+
+export const selectUpdating = createSelector(
+  [selectUser],
+  (user) => user.updating
+);
+export const selectUpdateSuccess = createSelector(
+  [selectUser],
+  (user) => user.updateSuccess
+);
+
+export const selectUpdateErr = createSelector(
+  [selectUser],
+  (user) => user.updateErr
+);

@@ -8,9 +8,22 @@ import { faChevronCircleLeft } from "@fortawesome/free-solid-svg-icons";
 // Redux:
 import { createStructuredSelector } from "reselect";
 import { connect } from "react-redux";
-import { selectUserdata } from "../../redux/user/user.selector";
+import {
+  selectUserdata,
+  selectUpdating,
+  selectUpdateSuccess,
+  selectUpdateErr,
+} from "../../redux/user/user.selector";
+import { updateMe } from "../../redux/user/user.actions";
 
-const Profile = ({ userData, showProfile }) => {
+const Profile = ({
+  userData,
+  updating,
+  updated,
+  updateErr,
+  update,
+  showProfile,
+}) => {
   const [username, setUsername] = useState(userData.username);
   const [email, setEmail] = useState(userData.email);
 
@@ -65,9 +78,9 @@ const Profile = ({ userData, showProfile }) => {
           <motion.button
             whileTap={{ scale: 0.3 }}
             className="btn-profile-update"
-            // onClick={}
+            onClick={() => update(username, email)}
           >
-            Update
+            {updating ? "Updating..." : "Update"}
           </motion.button>
         </div>
       </div>
@@ -76,6 +89,12 @@ const Profile = ({ userData, showProfile }) => {
 };
 const mapStateToProps = createStructuredSelector({
   userData: selectUserdata,
+  updating: selectUpdating,
+  updated: selectUpdateSuccess,
+  updateErr: selectUpdateErr,
 });
 
-export default connect(mapStateToProps)(Profile);
+const mapDispatchToProps = (dispatch) => ({
+  update: (name, email) => dispatch(updateMe(name, email)),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
