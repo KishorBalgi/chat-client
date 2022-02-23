@@ -1,44 +1,74 @@
-import React from "react";
+import React, { useState } from "react";
 import "./profile.styles.css";
+// Animations:
+import { motion } from "framer-motion";
 // Icons:
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faUserEdit,
-  faChevronCircleLeft,
-  faCamera,
-} from "@fortawesome/free-solid-svg-icons";
+import { faChevronCircleLeft } from "@fortawesome/free-solid-svg-icons";
 // Redux:
 import { createStructuredSelector } from "reselect";
 import { connect } from "react-redux";
 import { selectUserdata } from "../../redux/user/user.selector";
+
 const Profile = ({ userData, showProfile }) => {
+  const [username, setUsername] = useState(userData.username);
+  const [email, setEmail] = useState(userData.email);
+
   return (
     <div className="profile">
-      <button className="btn-profile-close" onClick={() => showProfile(false)}>
+      <motion.button
+        whileHover={{ scale: 1.2 }}
+        whileTap={{ scale: 0.8 }}
+        className="btn-profile-close"
+        onClick={() => showProfile(false)}
+      >
         <FontAwesomeIcon icon={faChevronCircleLeft} />
-      </button>
-      <div className="profile-img">
+      </motion.button>
+      <motion.div
+        animate={{ scale: 1.5 }}
+        transition={{ duration: 0.5 }}
+        className="profile-img"
+      >
         <img src={userData.img} alt="Profile pic" />
-        <div className="btn-profile-img-change">
-          <div>
-            <p>Change Profile Photo</p>
-            <FontAwesomeIcon icon={faCamera} className="icon-camera" />
-          </div>
-        </div>
-      </div>
+      </motion.div>
       <div className="profile-details">
+        <div>
+          <label htmlFor="img">Update Photo:</label>
+          <input type="file" id="img" />
+          <motion.button
+            whileTap={{ scale: 0.3 }}
+            className="btn-profile-img-upload"
+            onClick={() => document.getElementById("img").click()}
+          >
+            Choose Photo
+          </motion.button>
+        </div>
         <div>
           <label htmlFor="username">Username:</label>
           <input
             type="text"
             id="username"
-            placeholder="Your name"
-            value={userData.username}
-            readOnly
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
-          <button className="btn-profile-edit-username">
-            <FontAwesomeIcon icon={faUserEdit} />
-          </button>
+        </div>
+        <div>
+          <label htmlFor="email">E-mail:</label>
+          <input
+            type="text"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div>
+          <motion.button
+            whileTap={{ scale: 0.3 }}
+            className="btn-profile-update"
+            // onClick={}
+          >
+            Update
+          </motion.button>
         </div>
       </div>
     </div>

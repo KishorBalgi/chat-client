@@ -4,12 +4,11 @@ import "./profile-menu.styles.css";
 import { connect } from "react-redux";
 import { logout } from "../../redux/user/user.actions";
 
-const ProfileMenu = ({ logout, showProfile }) => {
+const ProfileMenu = ({ logout, showSettings }) => {
   return (
     <div className="profile-menu">
       <ul className="profile-menu-options">
-        <li onClick={() => showProfile(true)}>Profile</li>
-        <li>Settings</li>
+        <li onClick={() => showSettings(true)}>Settings</li>
         <li onClick={() => logout()}>Logout</li>
       </ul>
     </div>

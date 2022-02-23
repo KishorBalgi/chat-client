@@ -5,9 +5,14 @@ import ProfileBar from "../profile-bar/profile-bar.component";
 import { SearchBar } from "../search-bar/search-bar.component";
 import ChatList from "../chat-list/chat-list.component";
 import Profile from "../profile/profile.component";
+import Settings from "../settings/settings.component";
+import Account from "../account/account.components";
 
 export const ChatMenu = () => {
   const [showProfile, setShowProfile] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
+  const [showAccount, setShowAccount] = useState(false);
+
   if (showProfile) {
     return (
       <div className="chat-menu">
@@ -15,10 +20,31 @@ export const ChatMenu = () => {
       </div>
     );
   }
+  if (showSettings) {
+    return (
+      <div className="chat-menu">
+        <Settings showSettings={setShowSettings} showAccount={setShowAccount} />
+      </div>
+    );
+  }
+  if (showAccount) {
+    return (
+      <div className="chat-menu">
+        <Account
+          showSettings={setShowSettings}
+          showProfile={setShowProfile}
+          showAccount={setShowAccount}
+        />
+      </div>
+    );
+  }
   return (
     <div className="chat-menu">
       <div className="chat-menu-bar">
-        <ProfileBar showProfile={setShowProfile} />
+        <ProfileBar
+          showProfile={setShowProfile}
+          showSettings={setShowSettings}
+        />
         <SearchBar />
       </div>
       <ChatList />

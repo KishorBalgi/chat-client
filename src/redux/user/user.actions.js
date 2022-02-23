@@ -52,27 +52,23 @@ export const login = (email, password) => {
     }
     const data = { email: email, password: password };
     dispatch(loginStart());
-    try {
-      const res = await axios({
-        method: "POST",
-        url: "https://chat-box-app-server.herokuapp.com/api/v1/user/auth/login",
-        data: data,
-      });
-      console.log(res);
-      if (res.data.status === "success") {
-        const user = res.data.data;
-
-        dispatch(
-          loginSuccessful({
-            username: user.name,
-            uid: user.uid,
-            img: user.img,
-          })
-        );
-      }
-    } catch (err) {
-      dispatch(loginFailed(err));
-    }
+    fetch(`${process.env.REACT_APP_HOST_URL}/api/v1/user/auth/login`, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status === "success") {
+          encryptStorage.setItem("user", data.user);
+          dispatch(loginSuccessful(data.user));
+        } else {
+          throw data;
+        }
+      })
+      .catch((err) => dispatch(loginFailed(err.message)));
   };
 };
 // SignUp:
@@ -87,29 +83,24 @@ export const signup = (name, email, password) => {
       password: password,
       createdAt: new Date().toISOString(),
     };
-    console.log(data);
     dispatch(signupStart());
-    await axios
-      .post("http://localhost:8000/api/v1/user/auth/signup")
-      // .then((res) => res.json())
+    fetch(`${process.env.REACT_APP_HOST_URL}/api/v1/user/auth/signup`, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((res) => res.json())
       .then((data) => {
         if (data.status === "success") {
-          dispatch(
-            signupSuccessful({
-              username: name,
-              uid: data.user.uid,
-              img: data.user.img,
-            })
-          );
-          encryptStorage.setItem("user", {
-            email: email,
-            password: password,
-          });
-        } else if (data.status === "fail") {
-          throw data.message;
+          encryptStorage.setItem("user", data.user);
+          dispatch(signupSuccessful(data.user));
+        } else {
+          throw data;
         }
       })
-      .catch((err) => dispatch(signupFailed(err)));
+      .catch((err) => dispatch(signupFailed(err.message)));
   };
 };
 

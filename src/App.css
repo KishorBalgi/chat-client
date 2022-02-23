@@ -57,3 +57,20 @@
     margin: 10px 5px;
   }
 }
+/* Chat menu */
+.chat-menu-ul {
+  display: flex;
+  flex-direction: column;
+}
+.chat-menu-ul li {
+  display: inline-block;
+  font-size: 22px;
+  padding: 10px 15px;
+  margin: 10px;
+  border-radius: 5px;
+  background-color: rgb(128, 128, 128);
+  cursor: pointer;
+}
+.chat-menu-ul li svg {
+  padding: 0 10px;
+}

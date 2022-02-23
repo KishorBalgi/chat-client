@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./profile-bar.styles.css";
+// Animations:
+import { motion } from "framer-motion";
 // Component:
 import ProfileMenu from "../profile-menu/profile-menu.component";
 // Icons:
@@ -9,11 +11,13 @@ import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectUserdata } from "../../redux/user/user.selector";
-const ProfileBar = ({ userData, showProfile }) => {
+const ProfileBar = ({ userData, showProfile, showSettings }) => {
   const [showPMenu, setPMenu] = useState(false);
   return (
     <div className="profile-bar">
-      <img
+      <motion.img
+        whileHover={{ scale: 1.2 }}
+        whileTap={{ scale: 0.8 }}
         className="profile-bar-img"
         src={userData.img}
         onClick={() => showProfile(true)}
@@ -24,7 +28,7 @@ const ProfileBar = ({ userData, showProfile }) => {
           className="btn-menu"
           onClick={() => setPMenu(!showPMenu)}
         />
-        {showPMenu ? <ProfileMenu showProfile={showProfile} /> : null}
+        {showPMenu ? <ProfileMenu showSettings={showSettings} /> : null}
       </button>
     </div>
   );
