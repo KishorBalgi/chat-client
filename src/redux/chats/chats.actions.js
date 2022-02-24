@@ -17,7 +17,7 @@ export const fetchChatsFailure = (err) => ({
 export const fetchChatsAsync = () => {
   return (dispatch) => {
     dispatch(fetchChatsStart);
-    fetch("https://chat-box-app-server.herokuapp.com/api/v1/chats")
+    fetch(`${process.env.REACT_APP_HOST_URL}/api/v1/chats`)
       .then((res) => res.json())
       .then((data) => {
         const chats = data;
