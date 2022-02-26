@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronCircleLeft } from "@fortawesome/free-solid-svg-icons";
 
-const Account = ({ showSettings, showProfile, showAccount }) => {
+const Account = ({ showSettings, showProfile, showAccount, showChgPass }) => {
   return (
     <div className="account">
       <motion.button
@@ -29,7 +29,14 @@ const Account = ({ showSettings, showProfile, showAccount }) => {
         >
           Profile
         </li>
-        <li>Change Password</li>
+        <li
+          onClick={() => {
+            showChgPass(true);
+            showAccount(false);
+          }}
+        >
+          Update Password
+        </li>
         <li>Delete account</li>
       </ul>
     </div>

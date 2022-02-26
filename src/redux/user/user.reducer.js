@@ -80,6 +80,12 @@ const userReducer = (state = INITIAL_STATE, action) => {
         updateSuccess: false,
         updateErr: action.payload,
       };
+    case userTypes.UPDATE_PASS_SUCCESSFUL:
+      return {
+        ...state,
+        updating: false,
+        updateSuccess: true,
+      };
     default:
       return state;
   }

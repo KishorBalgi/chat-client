@@ -44,7 +44,7 @@ const Profile = ({
       >
         <img src={userData.img} alt="Profile pic" />
       </motion.div>
-      <div className="profile-details">
+      <div className="profile-details menu-form">
         <div>
           <label htmlFor="img">Update Photo:</label>
           <input type="file" id="img" />

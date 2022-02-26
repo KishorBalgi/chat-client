@@ -7,11 +7,13 @@ import ChatList from "../chat-list/chat-list.component";
 import Profile from "../profile/profile.component";
 import Settings from "../settings/settings.component";
 import Account from "../account/account.components";
+import ChangePassword from "../changePassword/changePassword.component";
 
 export const ChatMenu = () => {
   const [showProfile, setShowProfile] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [showAccount, setShowAccount] = useState(false);
+  const [showChgPass, setShowChgPass] = useState(false);
 
   if (showProfile) {
     return (
@@ -34,6 +36,17 @@ export const ChatMenu = () => {
           showSettings={setShowSettings}
           showProfile={setShowProfile}
           showAccount={setShowAccount}
+          showChgPass={setShowChgPass}
+        />
+      </div>
+    );
+  }
+  if (showChgPass) {
+    return (
+      <div className="chat-menu">
+        <ChangePassword
+          showAccount={setShowAccount}
+          showChgPass={setShowChgPass}
         />
       </div>
     );

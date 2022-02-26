@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./settings.styles.css";
 // Animations:
 import { motion } from "framer-motion";
@@ -31,7 +32,9 @@ const Settings = ({ showSettings, showAccount }) => {
           Account
         </li>
         <li>Theme</li>
-        <li>About</li>
+        <Link to={"/about"}>
+          <li>About</li>
+        </Link>
       </ul>
     </div>
   );

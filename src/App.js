@@ -1,39 +1,30 @@
 import "./App.css";
+import { Routes, Route } from "react-router-dom";
 // Components:
-import { ChatMenu } from "./components/chat-menu/chat-menu.component";
-import { ChatBox } from "./components/chat-box/chat-box.component";
 import Sinlog from "./components/sinlog/sinlog.component";
 import { motion } from "framer-motion";
 // Redux:
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
-import { selectIsLoggedIn } from "./redux/user/user.selector";
-import { checkSavedLogin } from "./redux/user/user.actions";
+// import { connect } from "react-redux";
+// import { createStructuredSelector } from "reselect";
+// import { selectIsLoggedIn } from "./redux/user/user.selector";
+// import { checkSavedLogin } from "./redux/user/user.actions";
+// Pages:
+import AboutPage from "./pages/about/aboutpage.component";
+import AppPage from "./pages/app/apppage.component";
+import HomePage from "./pages/home/homepage.component";
 
-function App({ isLoggedIn, checkSavedLogin }) {
-  if (isLoggedIn) {
-    return (
-      <div className="App">
-        <motion.div className="alert"></motion.div>
-        <ChatMenu />
-        <ChatBox />
-      </div>
-    );
-  } else {
-    checkSavedLogin();
-    return (
-      <div className="App">
-        <motion.div className="alert"></motion.div>
-        <Sinlog />
-      </div>
-    );
-  }
+function App() {
+  return (
+    <div className="App">
+      <motion.div className="alert"></motion.div>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/app" element={<AppPage />} />
+        <Route path="/login" element={<Sinlog />} />
+      </Routes>
+    </div>
+  );
 }
 
-const mapStateToProps = createStructuredSelector({
-  isLoggedIn: selectIsLoggedIn,
-});
-const mapDispatchToProps = (dispatch) => ({
-  checkSavedLogin: () => dispatch(checkSavedLogin()),
-});
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

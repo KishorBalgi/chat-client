@@ -1,0 +1,79 @@
+import React, { useState } from "react";
+import "./changePassword.styles.css";
+// Animations:
+import { motion } from "framer-motion";
+// Icons:
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronCircleLeft } from "@fortawesome/free-solid-svg-icons";
+// Redux:
+import { createStructuredSelector } from "reselect";
+import { connect } from "react-redux";
+import { updatePassword } from "../../redux/user/user.actions";
+import {
+  selectUpdateSuccess,
+  selectUpdating,
+} from "../../redux/user/user.selector";
+
+const ChangePassword = ({
+  updatePass,
+  updating,
+  updated,
+  showAccount,
+  showChgPass,
+}) => {
+  const [current, setCurrent] = useState("--------");
+  const [newPass, setNewPass] = useState("--------");
+
+  return (
+    <div className="password-change">
+      <motion.button
+        whileHover={{ scale: 1.2 }}
+        whileTap={{ scale: 0.8 }}
+        className="btn-profile-close"
+        onClick={() => {
+          showAccount(true);
+          showChgPass(false);
+        }}
+      >
+        <FontAwesomeIcon icon={faChevronCircleLeft} />
+      </motion.button>
+      <div className="password-change-from menu-form">
+        <div>
+          <label htmlFor="current">Current password:</label>
+          <input
+            type="password"
+            id="current"
+            placeholder={current}
+            onChange={(e) => setCurrent(e.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="newPass">New password:</label>
+          <input
+            type="password"
+            id="newPass"
+            placeholder={newPass}
+            onChange={(e) => setNewPass(e.target.value)}
+          />
+        </div>
+        <div>
+          <motion.button
+            whileTap={{ scale: 0.3 }}
+            className="btn-password-change"
+            onClick={() => updatePass(current, newPass)}
+          >
+            {updating ? "Updating..." : "Update Password"}
+          </motion.button>
+        </div>
+      </div>
+    </div>
+  );
+};
+const mapStateToProps = createStructuredSelector({
+  updating: selectUpdating,
+  updated: selectUpdateSuccess,
+});
+const matchDispatchToProps = (dispatch) => ({
+  updatePass: (current, newPass) => dispatch(updatePassword(current, newPass)),
+});
+export default connect(mapStateToProps, matchDispatchToProps)(ChangePassword);

@@ -1,6 +1,12 @@
 import { userTypes } from "./user.types";
 import { encryptStorage } from "../../utils/encrypt_storage/encryptStorage";
-
+import axios from "axios";
+// config axios:
+const api = axios.create({
+  baseURL: process.env.REACT_APP_HOST_URL,
+  headers: { "Content-Type": "application/json" },
+  withCredentials: true,
+});
 export const loginStart = () => ({
   type: userTypes.LOGIN_START,
 });
@@ -46,23 +52,33 @@ export const updateFailed = (msg) => ({
   type: userTypes.UPDATE_FAILED,
   payload: msg,
 });
+
+export const updatePassSuccessful = (userData) => ({
+  type: userTypes.UPDATE_PASS_SUCCESSFUL,
+  payload: userData,
+});
 // Login saved:
 export const checkSavedLogin = () => {
-  return (dispatch) => {
+  return async (dispatch) => {
     const user = encryptStorage.getItem("user");
+    var res;
     if (user) {
-      fetch(`${process.env.REACT_APP_HOST_URL}/api/v1/user/auth/isLoggedIn`, {
-        credentials: "include",
-      })
+      res = await fetch(
+        `${process.env.REACT_APP_HOST_URL}/api/v1/user/auth/isLoggedIn`,
+        {
+          credentials: "include",
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           if (data.user) {
             encryptStorage.setItem("user", data.user);
             dispatch(loginSuccessful(data.user));
-          }
+            return true;
+          } else return false;
         });
     }
-    return;
+    return res;
   };
 };
 // Login:
@@ -86,6 +102,7 @@ export const login = (email, password) => {
         if (data.status === "success") {
           encryptStorage.setItem("user", data.user);
           dispatch(loginSuccessful(data.user));
+          window.location.assign("/app");
         } else {
           throw data;
         }
@@ -119,6 +136,7 @@ export const signup = (name, email, password) => {
         if (data.status === "success") {
           encryptStorage.setItem("user", data.user);
           dispatch(signupSuccessful(data.user));
+          window.location.assign("/app");
         } else {
           throw data;
         }
@@ -135,6 +153,7 @@ export const logout = () => {
     });
     encryptStorage.clear();
     dispatch(logoutSuccessful());
+    window.location.assign("/");
   };
 };
 // Update me:
@@ -142,10 +161,10 @@ export const updateMe = (name, email) => {
   return (dispatch) => {
     const data = {};
     const user = encryptStorage.getItem("user");
-    if (user.username != name || user.email != email) {
+    if (user.username !== name || user.email !== email) {
       dispatch(updating());
-      if (user.username != name) data.name = name;
-      if (user.email != email) data.email = email;
+      if (user.username !== name) data.name = name;
+      if (user.email !== email) data.email = email;
       fetch(`${process.env.REACT_APP_HOST_URL}/api/v1/user/updateMe`, {
         method: "PATCH",
         credentials: "include",
@@ -156,7 +175,6 @@ export const updateMe = (name, email) => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (data.status === "success") {
             encryptStorage.setItem("user", data.user);
             dispatch(updateSuccessful(data.user));
@@ -167,6 +185,25 @@ export const updateMe = (name, email) => {
         .catch((err) => {
           dispatch(updateFailed(err.message));
         });
+    }
+  };
+};
+// Update password:
+export const updatePassword = (currentPass, newPass) => {
+  return (dispatch) => {
+    if (currentPass && newPass) {
+      dispatch(updating());
+      const data = {
+        currPassword: currentPass,
+        newPassword: newPass,
+      };
+      api
+        .patch("/api/v1/user/auth/updatePassword", data)
+        .then((res) => {
+          if (res.data.status === "success") dispatch(updatePassSuccessful());
+          else throw res.data;
+        })
+        .catch((err) => console.log(err));
     }
   };
 };
