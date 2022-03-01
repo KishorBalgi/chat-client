@@ -1,4 +1,5 @@
 import { chatsTypes } from "./chats.types";
+import { appendChatUtil, modifyChats } from "./chats.utils";
 
 const INITIAL_STATE = {
   chats: null,
@@ -17,13 +18,18 @@ const chatsReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isFetchingChats: false,
-        chats: action.payload,
+        chats: modifyChats(action.payload),
       };
     case chatsTypes.FETCH_CHAT_FAILUER:
       return {
         ...state,
         isFetchingChats: false,
         errorMessage: action.payload,
+      };
+    case chatsTypes.APPEND_CHAT:
+      return {
+        ...state,
+        chats: appendChatUtil(action.payload, state.chats),
       };
     default:
       return {

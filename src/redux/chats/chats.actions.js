@@ -13,6 +13,10 @@ export const fetchChatsFailure = (err) => ({
   type: chatsTypes.FETCH_CHAT_SUCCESS,
   payload: err,
 });
+export const appendChat = (chat) => ({
+  type: chatsTypes.APPEND_CHAT,
+  payload: chat,
+});
 
 export const fetchChatsAsync = () => {
   return (dispatch) => {
