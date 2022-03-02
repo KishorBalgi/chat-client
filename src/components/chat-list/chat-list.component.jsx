@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import "./chat-list.styles.css";
 // Components:
-import { ChatItem } from "../chat-item/chat-item.component";
+import ChatItem from "../chat-item/chat-item.component";
 import { Spinner } from "../spinner/spinner.component";
 // Redux:
 import { fetchChatListAsync } from "../../redux/chat-list/chat-list.actions";
@@ -22,7 +22,7 @@ const ChatList = ({ chatlist, errMsg, fetchChatListAsync }) => {
       {chatlist === null ? (
         <Spinner />
       ) : (
-        chatlist.map((i) => <ChatItem {...i} key={i.id} />)
+        chatlist.map((i) => <ChatItem {...i} key={i._id} />)
       )}
     </div>
   );

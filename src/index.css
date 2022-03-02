@@ -20,6 +20,7 @@ body {
   width: 100vw;
   height: 100vh;
   overflow-y: hidden;
+  background-color: var(--clr-primary);
 }
 button {
   background: none;

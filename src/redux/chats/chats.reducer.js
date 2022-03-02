@@ -1,8 +1,9 @@
 import { chatsTypes } from "./chats.types";
-import { appendChatUtil, modifyChats } from "./chats.utils";
+import { appendChatUtil, modifyChats, findCurrentChat } from "./chats.utils";
 
 const INITIAL_STATE = {
   chats: null,
+  currentChat: null,
   isFetchingChats: false,
   errorMessage: undefined,
 };

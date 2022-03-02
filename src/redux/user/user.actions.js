@@ -101,6 +101,7 @@ export const login = (email, password) => {
       .then((data) => {
         if (data.status === "success") {
           encryptStorage.setItem("user", data.user);
+          encryptStorage.setItem("jwt", data.token);
           dispatch(loginSuccessful(data.user));
           window.location.assign("/app");
         } else {
@@ -135,6 +136,7 @@ export const signup = (name, email, password) => {
       .then((data) => {
         if (data.status === "success") {
           encryptStorage.setItem("user", data.user);
+          encryptStorage.setItem("jwt", data.token);
           dispatch(signupSuccessful(data.user));
           window.location.assign("/app");
         } else {

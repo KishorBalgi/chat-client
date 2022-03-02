@@ -6,12 +6,21 @@ import Chat from "../chat/chat.component";
 import Chats from "../chats/chats.component";
 // Data:
 import current from "../../test-data/current-chat.json";
-export const ChatBox = () => {
-  return (
+// Redux:
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { selectUserChats } from "../../redux/chats/chats.selector";
+
+const ChatBox = ({ chats }) => {
+  return chats ? (
     <div className="chat-box">
       <ChatBar {...current} />
       <Chats />
       <Chat />
     </div>
-  );
+  ) : null;
 };
+const mapStateToProps = createStructuredSelector({
+  chats: selectUserChats,
+});
+export default connect(mapStateToProps)(ChatBox);

@@ -1,5 +1,6 @@
 import { Sender } from "../../components/chat-sender/chat-sender.component";
 import { Receiver } from "../../components/chat-receiver/chat-receiver.component";
+import store from "../store";
 
 export const appendChatUtil = (chat, chats) => {
   const obj = {

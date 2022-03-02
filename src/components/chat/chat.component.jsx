@@ -8,10 +8,7 @@ import { appendChat } from "../../redux/chats/chats.actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 // Socket:
-import io from "socket.io-client";
-const socket = io("http://localhost:8000", {
-  auth: { token: "hkdfgkjbfgbfdjgdgfdhghdhgkjhjdfkhjfhj" },
-});
+import { socket } from "../../pages/app/apppage.component";
 
 const Chat = ({ appendChat }) => {
   function handleChatSubmit(e) {

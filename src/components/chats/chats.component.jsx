@@ -12,10 +12,7 @@ import {
   selectErrMsg,
 } from "../../redux/chats/chats.selector";
 
-const Chats = ({ chats, isFetching, errMsg, fetchChatsAsync }) => {
-  useEffect(() => {
-    fetchChatsAsync();
-  }, [isFetching]);
+const Chats = ({ chats, isFetching, errMsg }) => {
   return <div className="chats">{chats === null ? <Spinner /> : chats}</div>;
 };
 
@@ -25,7 +22,4 @@ const mapStateToProps = createStructuredSelector({
   errMsg: selectErrMsg,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchChatsAsync: () => dispatch(fetchChatsAsync()),
-});
-export default connect(mapStateToProps, mapDispatchToProps)(Chats);
+export default connect(mapStateToProps)(Chats);
