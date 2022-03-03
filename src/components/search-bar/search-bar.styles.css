@@ -1,6 +1,9 @@
 .search-bar {
   width: 100%;
   background-color: #505050;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .search-bar-input {
   width: 88%;
@@ -13,6 +16,37 @@
   background-color: #373737;
   border: none;
   border-radius: 50px;
+}
+.user-serach-res {
+  width: 100%;
+  min-height: fit-content;
+  max-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+}
+.searched-user {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  margin: 8px auto;
+  padding: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.searched-user:hover {
+  background-color: #373737;
+}
+.searched-user img {
+  width: 40px;
+  height: auto;
+  border-radius: 50px;
+  margin-right: 15px;
+}
+.searched-user span {
+  color: #fff;
+  font-size: 18px;
 }
 @media only screen and (max-width: 800px) {
   .search-bar {

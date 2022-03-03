@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./chat-menu.styles.css";
 // Components:
 import ProfileBar from "../profile-bar/profile-bar.component";
-import { SearchBar } from "../search-bar/search-bar.component";
+import SearchBar from "../search-bar/search-bar.component";
 import ChatList from "../chat-list/chat-list.component";
 import Profile from "../profile/profile.component";
 import Settings from "../settings/settings.component";
