@@ -15,7 +15,7 @@ import { encryptStorage } from "../../utils/encrypt_storage/encryptStorage";
 import io from "socket.io-client";
 //
 // http://localhost:8000
-export const socket = io("https://chat-box-app-client.herokuapp.com", {
+export const socket = io("https://chat-box-app-server.herokuapp.com", {
   auth: { token: encryptStorage.getItem("jwt") },
 });
 socket.on("connect_error", (err) => {
