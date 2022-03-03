@@ -2,7 +2,7 @@ import { userTypes } from "./user.types";
 import { encryptStorage } from "../../utils/encrypt_storage/encryptStorage";
 import axios from "axios";
 // config axios:
-const api = axios.create({
+export const api = axios.create({
   baseURL: process.env.REACT_APP_HOST_URL,
   headers: { "Content-Type": "application/json" },
   withCredentials: true,

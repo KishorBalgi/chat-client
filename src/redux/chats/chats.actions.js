@@ -1,4 +1,5 @@
 import { chatsTypes } from "./chats.types";
+import { api } from "../user/user.actions";
 
 export const fetchChatsStart = () => ({
   type: chatsTypes.FETCH_CHAT_START,
@@ -19,17 +20,23 @@ export const appendChat = (chat) => ({
   payload: chat,
 });
 
-export const fetchChatsAsync = () => {
+export const fetchChatsAsync = (id) => {
   return (dispatch) => {
     dispatch(fetchChatsStart);
-    fetch(`${process.env.REACT_APP_HOST_URL}/api/v1/chats`)
-      .then((res) => res.json())
-      .then((data) => {
-        const chats = data;
-        dispatch(fetchChatsSuccess(chats));
+    api
+      .post(`${process.env.REACT_APP_HOST_URL}/api/v1/chats/getChatHistory`, {
+        id: id,
+      })
+      .then((res) => {
+        if (res.data.status === "success") {
+          const chats = res.data.chats;
+          dispatch(fetchChatsSuccess(chats));
+        } else {
+          throw res.data;
+        }
       })
       .catch((err) => {
-        dispatch(fetchChatsFailure(err));
+        dispatch(fetchChatsFailure(err.message));
       });
   };
 };

@@ -11,11 +11,16 @@ import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { socket } from "../../pages/app/apppage.component";
 
 const Chat = ({ appendChat }) => {
+  useEffect(() => {
+    socket.on("receive-message", (msg, uid) => {
+      appendChat({ msg, uid });
+    });
+  });
   function handleChatSubmit(e) {
     e.preventDefault();
     const msg = e.target[0].value;
-    socket.emit("msg", msg);
-    appendChat(msg);
+    socket.emit("send-message", msg, socket.currentRoom);
+    appendChat({ msg });
     e.target[0].value = "";
   }
   return (

@@ -3,12 +3,17 @@ import "./chat-item.styles.css";
 // Redux:
 import { fetchChatsAsync } from "../../redux/chats/chats.actions";
 import { connect } from "react-redux";
+import { socket } from "../../pages/app/apppage.component";
 
 const ChatItem = ({ _id, name, img, timestamp, fetchChatsAsync }) => {
   const date = new Date(timestamp * 1000);
   const time = `${date.getHours()}:${date.getMinutes()}`;
   function handleChatSelect(e) {
-    fetchChatsAsync();
+    const id = e.target.getAttribute("data-id");
+    socket.emit("join-room", id, (msg) => {
+      socket.currentRoom = msg;
+    });
+    fetchChatsAsync(id);
   }
   return (
     <div className="chat-item" onClick={handleChatSelect} data-id={_id}>
@@ -27,7 +32,7 @@ const ChatItem = ({ _id, name, img, timestamp, fetchChatsAsync }) => {
   );
 };
 const mapDispatchToProps = (dispatch) => ({
-  fetchChatsAsync: () => dispatch(fetchChatsAsync()),
+  fetchChatsAsync: (id) => dispatch(fetchChatsAsync(id)),
 });
 
 export default connect(null, mapDispatchToProps)(ChatItem);
