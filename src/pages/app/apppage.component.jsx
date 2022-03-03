@@ -13,7 +13,9 @@ import { checkSavedLogin } from "../../redux/user/user.actions";
 // Socket:
 import { encryptStorage } from "../../utils/encrypt_storage/encryptStorage";
 import io from "socket.io-client";
-export const socket = io("http://localhost:8000", {
+//
+// http://localhost:8000
+export const socket = io("https://chat-box-app-client.herokuapp.com", {
   auth: { token: encryptStorage.getItem("jwt") },
 });
 socket.on("connect_error", (err) => {
