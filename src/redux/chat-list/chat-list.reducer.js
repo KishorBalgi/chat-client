@@ -1,5 +1,6 @@
 import { chatListTypes } from "./chat-list.types";
 import { modifiyUserSearchRes } from "./chat-list.utils";
+import { appendChatList } from "./chat-list.utils";
 
 const INITIAL_STATE = {
   chatlist: null,
@@ -40,6 +41,11 @@ const chatListReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         userSearchErr: action.payload,
+      };
+    case chatListTypes.UPDATE_CHAT_LIST:
+      return {
+        ...state,
+        chatlist: appendChatList(action.payload, state.chatlist),
       };
     default:
       return state;

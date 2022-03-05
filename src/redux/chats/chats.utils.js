@@ -4,6 +4,7 @@ import { encryptStorage } from "../../utils/encrypt_storage/encryptStorage";
 const user = encryptStorage.getItem("user");
 
 export const appendChatUtil = (chat, chats) => {
+  if (chat.msg === "") return chats;
   const time = new Date().toLocaleTimeString("en-US", {
     hour12: false,
     hour: "2-digit",
@@ -32,4 +33,9 @@ export const modifyChats = (chats) => {
     )
   );
   return ch;
+};
+
+export const getCurrentChat = (users) => {
+  let res = users.filter((u) => u._id !== user.id);
+  return res[0];
 };

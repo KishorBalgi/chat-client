@@ -19,6 +19,7 @@ const Chat = ({ appendChat }) => {
   function handleChatSubmit(e) {
     e.preventDefault();
     const msg = e.target[0].value;
+    if (msg === "") return;
     socket.emit("send-message", msg, socket.currentRoom);
     appendChat({ msg });
     e.target[0].value = "";

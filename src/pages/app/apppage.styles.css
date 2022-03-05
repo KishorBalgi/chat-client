@@ -16,7 +16,6 @@
 
 @media only screen and (max-width: 800px) {
   .app-page {
-    grid-template-columns: 1fr 1fr;
     overflow: scroll;
   }
 }

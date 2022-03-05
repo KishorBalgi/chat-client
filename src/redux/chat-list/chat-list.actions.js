@@ -30,6 +30,10 @@ export const findUsersFailed = (err) => ({
   payload: err,
 });
 
+export const updateChatList = (users) => ({
+  type: chatListTypes.UPDATE_CHAT_LIST,
+  payload: users,
+});
 export const fetchChatListAsync = () => {
   return (dispatch) => {
     dispatch(fetchChatListStart());

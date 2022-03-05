@@ -22,10 +22,11 @@ const SearchBar = ({
     findUsers(search);
   }
   return (
-    <div className="search-bar">
+    <div className="search-bar" id="user-search-bar">
       <input
         type="text"
         className="search-bar-input"
+        id="user-search-input"
         placeholder="Search chat"
         onChange={handleSearchChange}
       />

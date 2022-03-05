@@ -1,5 +1,6 @@
 import { chatsTypes } from "./chats.types";
-import { appendChatUtil, modifyChats, findCurrentChat } from "./chats.utils";
+import { appendChatUtil, modifyChats } from "./chats.utils";
+import { getCurrentChat } from "./chats.utils";
 
 const INITIAL_STATE = {
   chats: null,
@@ -31,6 +32,11 @@ const chatsReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         chats: appendChatUtil(action.payload, state.chats),
+      };
+    case chatsTypes.SET_CURRENT_CHAT:
+      return {
+        ...state,
+        currentChat: getCurrentChat(action.payload),
       };
     default:
       return {

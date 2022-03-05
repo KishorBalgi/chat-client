@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 //Components:
 import { Spinner } from "../spinner/spinner.component";
 // Redux:
-import { fetchChatsAsync } from "../../redux/chats/chats.actions";
 import { createStructuredSelector } from "reselect";
 import {
   selectIsFetchingChats,

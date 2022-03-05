@@ -5,9 +5,7 @@ import { fetchChatsAsync } from "../../redux/chats/chats.actions";
 import { connect } from "react-redux";
 import { socket } from "../../pages/app/apppage.component";
 
-const ChatItem = ({ _id, name, img, timestamp, fetchChatsAsync }) => {
-  const date = new Date(timestamp * 1000);
-  const time = `${date.getHours()}:${date.getMinutes()}`;
+const ChatItem = ({ _id, name, img, fetchChatsAsync, setCurrentChat }) => {
   function handleChatSelect(e) {
     const id = e.target.getAttribute("data-id");
     socket.emit("join-room", id, (msg) => {
@@ -24,9 +22,9 @@ const ChatItem = ({ _id, name, img, timestamp, fetchChatsAsync }) => {
         </p>
       </div>
 
-      <p className="chat-item-timestamp" data-id={_id}>
+      {/* <p className="chat-item-timestamp" data-id={_id}>
         {time}
-      </p>
+      </p> */}
       {/* {notifc === null ? null : <p className="chat-notifc">{notifc}</p>} */}
     </div>
   );

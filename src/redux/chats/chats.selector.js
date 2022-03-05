@@ -16,3 +16,8 @@ export const selectErrMsg = createSelector(
   [selectChats],
   (chats) => chats.errorMessage
 );
+
+export const selectCurrentChat = createSelector(
+  [selectChats],
+  (chats) => chats.currentChat
+);
