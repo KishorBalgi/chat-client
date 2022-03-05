@@ -17,7 +17,13 @@ const ChatBox = ({ chats, currentChat }) => {
       <Chats />
       <Chat />
     </div>
-  ) : null;
+  ) : (
+    <div className="chat-box">
+      <p style={{ color: "#fff", fontSize: "20px", margin: "auto 0" }}>
+        Select a chat to start a conversation
+      </p>
+    </div>
+  );
 };
 const mapStateToProps = createStructuredSelector({
   chats: selectUserChats,

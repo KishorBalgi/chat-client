@@ -3,10 +3,5 @@
   min-height: 100vh;
   max-height: fit-content;
   z-index: 5;
-  margin-top: 120px;
-}
-@media only screen and (max-width: 800px) {
-  .chat-list {
-    margin-top: 60px;
-  }
+  margin-top: 60px;
 }

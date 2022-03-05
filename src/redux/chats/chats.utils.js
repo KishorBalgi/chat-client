@@ -25,13 +25,20 @@ export const appendChatUtil = (chat, chats) => {
 };
 
 export const modifyChats = (chats) => {
-  let ch = chats.map((c) =>
-    c.user === user.id ? (
+  let ch = chats.map((c) => {
+    const date = new Date(c.timestamp);
+    const time = date.toLocaleTimeString("en-US", {
+      hour12: false,
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    c.timestamp = time;
+    return c.user === user.id ? (
       <Sender {...c} key={c._id} />
     ) : (
       <Receiver {...c} key={c._id} />
-    )
-  );
+    );
+  });
   return ch;
 };
 

@@ -42,6 +42,7 @@ export const fetchChatListAsync = () => {
       .then((res) => {
         if (res.data.status !== "success") throw res.data;
         const chatlist = res.data.chatlist;
+        console.log(chatlist);
         encryptStorage.setItem("chatsID", res.data.chatsID);
         dispatch(fetchChatListSuccess(chatlist));
       })
