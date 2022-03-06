@@ -1,6 +1,9 @@
 import { chatListTypes } from "./chat-list.types";
 import { encryptStorage } from "../../utils/encrypt_storage/encryptStorage";
+import store from "../store";
 import { api } from "../user/user.actions";
+
+// State from global store:
 
 export const fetchChatListStart = () => ({
   type: chatListTypes.FETCH_CHAT_LIST_START,
@@ -34,6 +37,12 @@ export const updateChatList = (users) => ({
   type: chatListTypes.UPDATE_CHAT_LIST,
   payload: users,
 });
+
+export const assignChatlist = (chatlist) => ({
+  type: chatListTypes.ASSIGN_CHATLIST,
+  payload: chatlist,
+});
+
 export const fetchChatListAsync = () => {
   return (dispatch) => {
     dispatch(fetchChatListStart());
@@ -42,8 +51,7 @@ export const fetchChatListAsync = () => {
       .then((res) => {
         if (res.data.status !== "success") throw res.data;
         const chatlist = res.data.chatlist;
-        console.log(chatlist);
-        encryptStorage.setItem("chatsID", res.data.chatsID);
+        // encryptStorage.setItem("chatsID", res.data.chatsID);
         dispatch(fetchChatListSuccess(chatlist));
       })
       .catch((err) => {
@@ -65,5 +73,29 @@ export const searchUsers = (search) => {
         dispatch(findUsersSuccess(res.data.users));
       })
       .catch((err) => dispatch(findUsersFailed(err.message)));
+  };
+};
+
+export const updateChatListOnNewMsg = (id) => {
+  return (dispatch) => {
+    const state = store.getState();
+    const chatlist = state.chatlist.chatlist;
+    let res = chatlist.findIndex((u) => u._id === id);
+    if (res !== -1) {
+      const obj = chatlist[res];
+      chatlist.splice(res, 1);
+      dispatch(assignChatlist([obj, ...chatlist]));
+    } else {
+      api
+        .post(`${process.env.REACT_APP_HOST_URL}/api/v1/user/searchUser`, {
+          id,
+        })
+        .then((res) => {
+          if (res.data.status === "success") {
+            const obj = res.data.user;
+            dispatch(assignChatlist([obj, ...chatlist]));
+          }
+        });
+    }
   };
 };

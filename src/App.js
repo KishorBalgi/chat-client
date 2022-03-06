@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 // import { connect } from "react-redux";
 // import { createStructuredSelector } from "reselect";
 // import { selectIsLoggedIn } from "./redux/user/user.selector";
-// import { checkSavedLogin } from "./redux/user/user.actions";
+
 // Pages:
 import AboutPage from "./pages/about/aboutpage.component";
 import AppPage from "./pages/app/apppage.component";

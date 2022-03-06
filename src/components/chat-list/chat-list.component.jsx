@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import "./chat-list.styles.css";
 // Components:
@@ -13,10 +13,10 @@ import {
   selectErrMsg,
 } from "../../redux/chat-list/chat-list.selector";
 
-const ChatList = ({ chatlist, errMsg, fetchChatListAsync }) => {
+const ChatList = ({ chatlist, errMsg, fetchChatListAsync, updateChatlist }) => {
   useEffect(() => {
     fetchChatListAsync();
-  }, [errMsg]);
+  }, []);
   return (
     <div className="chat-list">
       {chatlist === null ? (

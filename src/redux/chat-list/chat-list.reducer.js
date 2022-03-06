@@ -1,6 +1,6 @@
 import { chatListTypes } from "./chat-list.types";
 import { modifiyUserSearchRes } from "./chat-list.utils";
-import { appendChatList } from "./chat-list.utils";
+import { appendChatList, appendChatListOnNewMsg } from "./chat-list.utils";
 
 const INITIAL_STATE = {
   chatlist: null,
@@ -46,6 +46,11 @@ const chatListReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         chatlist: appendChatList(action.payload, state.chatlist),
+      };
+    case chatListTypes.ASSIGN_CHATLIST:
+      return {
+        ...state,
+        chatlist: action.payload,
       };
     default:
       return state;

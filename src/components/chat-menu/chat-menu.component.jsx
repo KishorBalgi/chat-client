@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./chat-menu.styles.css";
 // Components:
 import ProfileBar from "../profile-bar/profile-bar.component";
@@ -8,12 +8,20 @@ import Profile from "../profile/profile.component";
 import Settings from "../settings/settings.component";
 import Account from "../account/account.components";
 import ChangePassword from "../changePassword/changePassword.component";
+import { socket } from "../../pages/app/apppage.component";
+import { connect } from "react-redux";
+import { updateChatListOnNewMsg } from "../../redux/chat-list/chat-list.actions";
 
-export const ChatMenu = () => {
+const ChatMenu = ({ updateChatlist }) => {
   const [showProfile, setShowProfile] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [showAccount, setShowAccount] = useState(false);
   const [showChgPass, setShowChgPass] = useState(false);
+  useEffect(() => {
+    socket.on("new-message-from", (id) => {
+      updateChatlist(id);
+    });
+  }, []);
 
   if (showProfile) {
     return (
@@ -64,3 +72,7 @@ export const ChatMenu = () => {
     </div>
   );
 };
+const mapDispatchToProps = (dispatch) => ({
+  updateChatlist: (id) => dispatch(updateChatListOnNewMsg(id)),
+});
+export default connect(null, mapDispatchToProps)(ChatMenu);

@@ -3,7 +3,7 @@ import "./apppage.styles.css";
 import { useNavigate } from "react-router-dom";
 // Components:
 import ChatBox from "../../components/chat-box/chat-box.component";
-import { ChatMenu } from "../../components/chat-menu/chat-menu.component";
+import ChatMenu from "../../components/chat-menu/chat-menu.component";
 import { Spinner } from "../../components/spinner/spinner.component";
 // Redux:
 import { connect } from "react-redux";
@@ -13,8 +13,6 @@ import { checkSavedLogin } from "../../redux/user/user.actions";
 // Socket:
 import { encryptStorage } from "../../utils/encrypt_storage/encryptStorage";
 import io from "socket.io-client";
-//https://chat-box-app-server.herokuapp.com
-// http://localhost:8000
 const socketURL =
   process.env.REACT_APP_NODE_ENV === "production"
     ? "https://chat-box-app-server.herokuapp.com"
@@ -28,10 +26,12 @@ socket.on("connect_error", (err) => {
 const AppPage = ({ isLoggedIn, checkSavedLogin }) => {
   let navigate = useNavigate();
   useEffect(async () => {
-    if (!(await checkSavedLogin())) {
-      navigate("/");
-    }
+    if (!isLoggedIn)
+      if (!(await checkSavedLogin())) {
+        navigate("/");
+      }
   });
+
   if (isLoggedIn) {
     return (
       <div className="app-page">

@@ -9,8 +9,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 // Socket:
 import { socket } from "../../pages/app/apppage.component";
+import { createStructuredSelector } from "reselect";
+import { selectCurrentChat } from "../../redux/chats/chats.selector";
 
-const Chat = ({ appendChat }) => {
+const Chat = ({ appendChat, currentChat }) => {
   useEffect(() => {
     socket.on("receive-message", (msg, uid) => {
       appendChat({ msg, uid });
@@ -20,7 +22,7 @@ const Chat = ({ appendChat }) => {
     e.preventDefault();
     const msg = e.target[0].value;
     if (msg === "") return;
-    socket.emit("send-message", msg, socket.currentRoom);
+    socket.emit("send-message", msg, socket.currentRoom, currentChat._id);
     appendChat({ msg });
     e.target[0].value = "";
   }
@@ -33,9 +35,11 @@ const Chat = ({ appendChat }) => {
     </form>
   );
 };
-
+const mapStateToProps = createStructuredSelector({
+  currentChat: selectCurrentChat,
+});
 const mapDispatchToProps = (dispatch) => ({
   appendChat: (chat) => dispatch(appendChat(chat)),
 });
 
-export default connect(null, mapDispatchToProps)(Chat);
+export default connect(mapStateToProps, mapDispatchToProps)(Chat);
