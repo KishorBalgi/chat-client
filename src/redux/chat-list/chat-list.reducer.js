@@ -1,6 +1,6 @@
 import { chatListTypes } from "./chat-list.types";
 import { modifiyUserSearchRes } from "./chat-list.utils";
-import { appendChatList, appendChatListOnNewMsg } from "./chat-list.utils";
+import { appendChatList } from "./chat-list.utils";
 
 const INITIAL_STATE = {
   chatlist: null,

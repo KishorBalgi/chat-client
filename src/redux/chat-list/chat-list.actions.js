@@ -1,5 +1,4 @@
 import { chatListTypes } from "./chat-list.types";
-import { encryptStorage } from "../../utils/encrypt_storage/encryptStorage";
 import store from "../store";
 import { api } from "../user/user.actions";
 
