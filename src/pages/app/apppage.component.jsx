@@ -14,7 +14,7 @@ import { checkSavedLogin } from "../../redux/user/user.actions";
 import { encryptStorage } from "../../utils/encrypt_storage/encryptStorage";
 import io from "socket.io-client";
 const socketURL =
-  process.env.REACT_APP_NODE_ENV === "production"
+  process.env.NODE_ENV === "production"
     ? "https://chat-box-app-server.herokuapp.com"
     : "http://localhost:8000";
 export const socket = io(socketURL, {
