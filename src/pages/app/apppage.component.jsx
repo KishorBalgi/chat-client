@@ -13,11 +13,11 @@ import { checkSavedLogin } from "../../redux/user/user.actions";
 // Socket:
 import { encryptStorage } from "../../utils/encrypt_storage/encryptStorage";
 import io from "socket.io-client";
-const socketURL =
-  process.env.NODE_ENV === "production"
-    ? "https://chat-box-app-server.herokuapp.com"
-    : "http://localhost:8000";
-export const socket = io(socketURL, {
+// const socketURL =
+//   process.env.NODE_ENV === "production"
+//     ? "https://chat-box-app-server.herokuapp.com"
+//     : "http://localhost:8000";
+export const socket = io("https://chat-box-app-server.herokuapp.com", {
   auth: { token: encryptStorage.getItem("jwt") },
 });
 socket.on("connect_error", (err) => {
