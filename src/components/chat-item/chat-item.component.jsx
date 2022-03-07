@@ -8,7 +8,7 @@ import { socket } from "../../pages/app/apppage.component";
 const ChatItem = ({ _id, name, img, fetchChatsAsync, setCurrentChat }) => {
   function handleChatSelect(e) {
     const id = e.target.getAttribute("data-id");
-    socket.emit("join-room", id, (msg) => {
+    socket.emit("join-room", { id, currRoom: socket.currentRoom }, (msg) => {
       socket.currentRoom = msg;
     });
     fetchChatsAsync(id);

@@ -9,12 +9,12 @@ import { socket } from "../../pages/app/apppage.component";
 const SearchedUser = ({ _id, name, img, fetchChats, searchUsers }) => {
   function handleSelectSearchedUser(e) {
     const id = e.target.getAttribute("data-id");
-    document.getElementById("user-search-input").value = "";
-    searchUsers("");
-    socket.emit("join-room", id, (msg) => {
+    socket.emit("join-room", { id, currRoom: socket.currentRoom }, (msg) => {
       socket.currentRoom = msg;
     });
     fetchChats(id);
+    document.getElementById("user-search-input").value = "";
+    searchUsers("");
   }
   return (
     <div

@@ -17,7 +17,7 @@ const Chat = ({ appendChat, currentChat }) => {
     socket.on("receive-message", (msg, uid) => {
       appendChat({ msg, uid });
     });
-  });
+  }, []);
   function handleChatSubmit(e) {
     e.preventDefault();
     const msg = e.target[0].value;
