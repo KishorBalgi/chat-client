@@ -102,7 +102,7 @@ export const login = (email, password) => {
         if (data.status === "success") {
           encryptStorage.setItem("user", data.user);
           encryptStorage.setItem("jwt", data.token);
-          document.cookie = `jwt=${data.token}; SameSite=None; Secure`;
+          // document.cookie = `jwt=${data.token}; SameSite=None; Secure`;
           dispatch(loginSuccessful(data.user));
           window.location.assign("/app");
         } else {
@@ -138,7 +138,7 @@ export const signup = (name, email, password) => {
         if (data.status === "success") {
           encryptStorage.setItem("user", data.user);
           encryptStorage.setItem("jwt", data.token);
-          document.cookie = `jwt=${data.token}; SameSite=None; Secure`;
+          // document.cookie = `jwt=${data.token}; SameSite=None; Secure`;
           dispatch(signupSuccessful(data.user));
           window.location.assign("/app");
         } else {

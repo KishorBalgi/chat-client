@@ -1,6 +1,7 @@
 import { chatsTypes } from "./chats.types";
 import { api } from "../user/user.actions";
 import { updateChatList } from "../chat-list/chat-list.actions";
+import store from "../store";
 
 export const fetchChatsStart = () => ({
   type: chatsTypes.FETCH_CHAT_START,
@@ -26,6 +27,11 @@ export const setCurrentChat = (users) => ({
   payload: users,
 });
 
+export const deleteMsg = (id) => ({
+  type: chatsTypes.DELETE_MSG,
+  payload: id,
+});
+
 export const fetchChatsAsync = (id) => {
   return (dispatch) => {
     dispatch(fetchChatsStart());
@@ -43,5 +49,20 @@ export const fetchChatsAsync = (id) => {
       .catch((err) => {
         dispatch(fetchChatsFailure(err.message));
       });
+  };
+};
+
+export const deleteMessageAsync = (id) => {
+  return (dispatch) => {
+    dispatch(deleteMsg(id));
+    const ReceiverId = store.getState().chats.currentChat._id;
+    api
+      .delete(
+        `${process.env.REACT_APP_HOST_URL}/api/v1/chats/deleteMessage/${ReceiverId}/${id}`
+      )
+      .then((res) => {
+        if (res.data.status !== "success") throw res.data;
+      })
+      .catch((err) => console.log(err.message));
   };
 };

@@ -46,3 +46,9 @@ export const getCurrentChat = (users) => {
   let res = users.filter((u) => u._id !== user.id);
   return res[0];
 };
+
+export const deleteAMessage = (id, chats) => {
+  const i = chats.findIndex((c) => c.key === id);
+  chats.splice(i, 1);
+  return [...chats];
+};

@@ -1,4 +1,5 @@
 .chat-right {
+  position: relative;
   align-self: flex-end;
   background-color: var(--clr-sender);
   border-top-right-radius: 0px;

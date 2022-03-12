@@ -1,6 +1,6 @@
 import { chatsTypes } from "./chats.types";
 import { appendChatUtil, modifyChats } from "./chats.utils";
-import { getCurrentChat } from "./chats.utils";
+import { getCurrentChat, deleteAMessage } from "./chats.utils";
 
 const INITIAL_STATE = {
   chats: null,
@@ -37,6 +37,11 @@ const chatsReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         currentChat: getCurrentChat(action.payload),
+      };
+    case chatsTypes.DELETE_MSG:
+      return {
+        ...state,
+        chats: deleteAMessage(action.payload, state.chats),
       };
     default:
       return {

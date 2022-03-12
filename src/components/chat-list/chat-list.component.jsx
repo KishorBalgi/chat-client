@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import "./chat-list.styles.css";
+import useChatRightClick from "../../hooks/useChatRightClick";
 // Components:
 import ChatItem from "../chat-item/chat-item.component";
 import { Spinner } from "../spinner/spinner.component";
+import ChatOptions from "../chat-options/chat-options.component";
 // Redux:
 import { fetchChatListAsync } from "../../redux/chat-list/chat-list.actions";
 
@@ -14,11 +16,13 @@ import {
 } from "../../redux/chat-list/chat-list.selector";
 
 const ChatList = ({ chatlist, errMsg, fetchChatListAsync, updateChatlist }) => {
+  const { x, y, showMenu } = useChatRightClick();
   useEffect(() => {
     fetchChatListAsync();
   }, []);
   return (
     <div className="chat-list">
+      <ChatOptions x={x} y={y} showMenu={showMenu} />
       {chatlist === null ? (
         <Spinner />
       ) : (

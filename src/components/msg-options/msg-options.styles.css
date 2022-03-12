@@ -1,0 +1,22 @@
+.msg-op-list {
+  position: absolute;
+  color: #fff;
+  width: 150px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background-color: rgb(82, 82, 82);
+}
+.msg-op-list ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.msg-op-list ul li {
+  width: 90%;
+  padding: 5px;
+  display: inline-block;
+  cursor: pointer;
+}
+.msg-op-list ul li:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}

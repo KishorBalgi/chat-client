@@ -4,6 +4,9 @@
   border-top-left-radius: 0px;
   margin-right: 130px;
 }
+.chat-left:hover > .msg-options {
+  display: flex;
+}
 @media only screen and (max-width: 320px) {
   .chat-left {
     margin-right: 50px;
