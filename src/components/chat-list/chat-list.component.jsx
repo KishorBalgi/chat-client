@@ -4,8 +4,8 @@ import "./chat-list.styles.css";
 import useChatRightClick from "../../hooks/useChatRightClick";
 // Components:
 import ChatItem from "../chat-item/chat-item.component";
-import { Spinner } from "../spinner/spinner.component";
 import ChatOptions from "../chat-options/chat-options.component";
+import ChatlistSkeleton from "../skeleton/chatlist-skeleton.components";
 // Redux:
 import { fetchChatListAsync } from "../../redux/chat-list/chat-list.actions";
 
@@ -24,7 +24,7 @@ const ChatList = ({ chatlist, errMsg, fetchChatListAsync, updateChatlist }) => {
     <div className="chat-list">
       <ChatOptions x={x} y={y} showMenu={showMenu} />
       {chatlist === null ? (
-        <Spinner />
+        <ChatlistSkeleton />
       ) : (
         chatlist.map((i) => <ChatItem {...i} key={i._id} />)
       )}

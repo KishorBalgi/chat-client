@@ -5,6 +5,7 @@
   border-radius: 5px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   background-color: rgb(82, 82, 82);
+  z-index: 9999;
 }
 .msg-op-list ul {
   display: flex;

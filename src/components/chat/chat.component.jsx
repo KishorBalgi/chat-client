@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./chat.styles.css";
-import { Sender } from "../chat-sender/chat-sender.component";
 // Redux:
 import { connect } from "react-redux";
 import { appendChat } from "../../redux/chats/chats.actions";

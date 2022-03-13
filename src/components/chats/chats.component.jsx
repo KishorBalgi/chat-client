@@ -15,10 +15,23 @@ import {
 
 const Chats = ({ chats, isFetching, errMsg }) => {
   const { x, y, showMenu, id } = useMsgRightClick();
+  if (isFetching) {
+    return (
+      <div className="chats">
+        <Spinner />
+      </div>
+    );
+  }
   return (
     <div className="chats">
       <MessageOptions x={x} y={y} showMenu={showMenu} id={id} />
-      {chats === null || isFetching ? <Spinner /> : chats}
+      {chats.length === 0 ? (
+        <p style={{ color: "#fff", fontSize: "20px", margin: "auto 0" }}>
+          This is the begining of your chats!
+        </p>
+      ) : (
+        chats
+      )}
     </div>
   );
 };
