@@ -1,0 +1,30 @@
+.skeleton {
+  opacity: 0.5;
+  animation: skeleton-animation 1s linear infinite alternate;
+}
+
+@keyframes skeleton-animation {
+  0% {
+    background-color: hsl(200, 20%, 60%);
+  }
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
+}
+.skl-cht-lst-itm {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+}
+.skl-cht-lst-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+}
+
+.skl-cht-lst-name {
+  margin-left: 20px;
+  width: 200px;
+  height: 10px;
+  border-radius: 5px;
+}
