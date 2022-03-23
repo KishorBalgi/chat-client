@@ -1,6 +1,6 @@
 {
-  "name": "Chat Box",
-  "short_name": "Chat Box",
+  "name": "Chatter",
+  "short_name": "Chatter",
   "display": "standalone",
   "orientation": "portrait",
   "scope": "/",
