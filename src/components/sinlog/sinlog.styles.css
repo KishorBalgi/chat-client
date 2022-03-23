@@ -9,7 +9,7 @@
 .sinlog-container {
   width: fit-content;
   height: fit-content;
-  background-color: rgb(120, 48, 255);
+  background-color: var(--clr-primary-theme);
   border-radius: 5px;
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
@@ -23,8 +23,8 @@
   width: 50%;
   font-size: 20px;
   font-weight: bold;
-  color: rgba(255, 255, 255, 0.2);
-  background-color: rgba(0, 0, 0, 0.4);
+  color: var(--clr-font);
+  background-color: var(--clr-primary-theme-light);
   padding: 20px;
 }
 .sinlog-form {
@@ -69,19 +69,19 @@ label {
   margin: 0 5px;
 }
 .btn-sinlog-submit {
-  background-color: rgb(103, 188, 245);
+  background-color: #fff;
   padding: 5px 10px;
   border-radius: 5px;
   font-weight: bold;
   font-size: 16px;
-  color: #fff;
+  color: var(--clr-font);
   transition: all 1s ease;
 }
 .btn-sinlog-submit:hover {
   transform: scale(1.1);
 }
 .btn-sinlog-active {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: var(--clr-primary-theme);
   color: #000;
 }
 .hidden {
