@@ -12,6 +12,7 @@ const ChatItem = ({ _id, name, img, fetchChatsAsync, setCurrentChat }) => {
       socket.currentRoom = msg;
     });
     fetchChatsAsync(id);
+    document.querySelector(".app-page").scrollIntoView({ behavior: "smooth" });
   }
   return (
     <div className="chat-item" onClick={handleChatSelect} data-id={_id}>

@@ -1,10 +1,16 @@
 :root {
-  --clr-primary: rgb(58, 58, 58);
-  --clr-primary-highlight: rgb(90, 90, 90);
-  --clr-receiver: rgb(48, 48, 48);
-  --clr-sender: rgb(44, 138, 201);
-  --clr-primary-lighter: rgb(214, 214, 214);
-  --clr-btn-green: rgb(22, 224, 73);
+  /* Default */
+  --clr-primary: #fafafa;
+  --clr-primary-highlight: #e4e5f1;
+  --clr-primary-darker: #d2d3db;
+  --clr-hover: rgba(0, 0, 0, 0.1);
+  --clr-chat-border: rgba(0, 0, 0, 0.2);
+  --clr-font: #000;
+  --clr-font-compl: #fff;
+  --clr-box-shadow: rgba(0, 0, 0, 0.4);
+  /* Theme */
+  --clr-primary-theme: #9733ee;
+  --clr-primary-theme-light: #da22ff;
 }
 * {
   margin: 0;
@@ -27,23 +33,22 @@ button {
   border: none;
   cursor: pointer;
 }
+a {
+  text-decoration: none;
+}
 ul li {
   text-decoration: none;
   display: inline-block;
 }
-/* code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-} */
 /* Scroll-Bar */
 ::-webkit-scrollbar-thumb {
-  background: rgb(109, 109, 109);
+  background: var(--clr-primary-theme);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-track {
   border-radius: 10px;
-  background: #000;
+  background: var(--clr-primary-highlight);
 }
 
 ::-webkit-scrollbar {

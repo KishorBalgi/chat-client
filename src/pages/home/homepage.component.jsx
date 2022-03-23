@@ -22,7 +22,7 @@ const HomePage = ({ checkSavedLogin }) => {
       className="home
         "
     >
-      <Spinner msg="loading..." />
+      <Spinner msg="Loading" />
     </div>
   );
 };

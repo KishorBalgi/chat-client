@@ -19,7 +19,13 @@ const ChatBox = ({ chats, currentChat }) => {
     </div>
   ) : (
     <div className="chat-box">
-      <p style={{ color: "#fff", fontSize: "20px", margin: "auto 0" }}>
+      <p
+        style={{
+          color: "var(--clr-font)",
+          fontSize: "20px",
+          margin: "auto 0",
+        }}
+      >
         Select a chat to start a conversation
       </p>
     </div>

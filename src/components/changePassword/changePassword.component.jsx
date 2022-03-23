@@ -59,7 +59,7 @@ const ChangePassword = ({
         <div>
           <motion.button
             whileTap={{ scale: 0.3 }}
-            className="btn-password-change"
+            className="btn-password-change btn-grad"
             onClick={() => updatePass(current, newPass)}
           >
             {updating ? "Updating..." : "Update Password"}

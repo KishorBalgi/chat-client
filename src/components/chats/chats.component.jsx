@@ -18,7 +18,7 @@ const Chats = ({ chats, isFetching, errMsg }) => {
   if (isFetching) {
     return (
       <div className="chats">
-        <Spinner />
+        <Spinner msg={"Fetching conversation"} />
       </div>
     );
   }

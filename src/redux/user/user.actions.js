@@ -211,3 +211,32 @@ export const updatePassword = (currentPass, newPass) => {
     }
   };
 };
+// Set Theme:
+// --clr-box-shadow: rgba(255, 255, 255, 0.4);
+
+export const setTheme = (theme) => {
+  return () => {
+    const root = document.querySelector(":root");
+    if (theme) localStorage.setItem("app-theme", theme);
+    if (theme === "light") {
+      root.style.setProperty("--clr-primary", "#fafafa");
+      root.style.setProperty("--clr-primary-highlight", "#e4e5f1");
+      root.style.setProperty("--clr-primary-darker", "#d2d3db");
+      root.style.setProperty("--clr-hover", "rgba(0, 0, 0, 0.1)");
+      root.style.setProperty("--clr-font", "#000");
+      root.style.setProperty("--clr-font-compl", "#fff");
+      root.style.setProperty("--clr-chat-border", "rgba(0, 0, 0, 0.2)");
+      root.style.setProperty("--clr-box-shadow", "rgba(0, 0, 0, 0.4)");
+    }
+    if (theme === "dark") {
+      root.style.setProperty("--clr-primary", "#0d1117");
+      root.style.setProperty("--clr-primary-highlight", "#333a44");
+      root.style.setProperty("--clr-primary-darker", "#161b22");
+      root.style.setProperty("--clr-hover", "rgba(255, 255, 255, 0.1)");
+      root.style.setProperty("--clr-font", "#fff");
+      root.style.setProperty("--clr-font-compl", "#000");
+      root.style.setProperty("--clr-chat-border", "rgba(255, 255, 255, 0.2)");
+      root.style.setProperty("--clr-box-shadow", "rgba(255, 255, 255, 0)");
+    }
+  };
+};

@@ -6,9 +6,10 @@
   align-items: center;
   overflow-x: hidden;
 }
-/* @media only screen and (max-width: 800px) {
+@media only screen and (max-width: 800px) {
   .chat-box {
+    width: 100vw;
     transform: translateX(0vw);
     z-index: 10;
   }
-} */
+}

@@ -13,29 +13,20 @@
   place-items: center;
   margin: 20px 30px;
 }
-
 .profile-img img {
   width: 100%;
   border-radius: 50%;
 }
-.btn-profile-img-upload:hover {
-  background: rgb(130, 216, 0);
-}
-
 .profile-details #img {
   display: none;
 }
-
 .btn-profile-close {
   align-self: flex-start;
   margin: 15px 20px;
   font-size: 25px;
-  color: #fff;
+  color: var(--clr-font);
 }
-
-.btn-profile-update {
+.btn-profile-update,
+.btn-profile-img-upload {
   margin: 10px 0;
-}
-.btn-profile-update:hover {
-  background: rgb(59, 150, 255);
 }

@@ -1,9 +1,8 @@
 .profile-menu {
   position: absolute;
-  background-color: var(--clr-primary);
+  background-color: var(--clr-primary-darker);
   border-radius: 5px;
   right: 0px;
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4);
   margin: 5px 15px;
 }
 .profile-menu-options {
@@ -13,11 +12,11 @@
 }
 .profile-menu-options li {
   font-size: 16px;
-  color: #fff;
+  color: var(--clr-font);
   padding: 10px 15px;
   width: 130px;
   border-radius: 5px;
 }
 .profile-menu-options li:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: var(--clr-hover);
 }

@@ -8,6 +8,7 @@
 }
 .spinner-container h4 {
   padding: 20px;
+  color: var(--clr-font);
 }
 .lds-roller {
   display: inline-block;
@@ -26,7 +27,7 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #fff;
+  background: var(--clr-font);
   margin: -4px 0 0 -4px;
 }
 .lds-roller div:nth-child(1) {

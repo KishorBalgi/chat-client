@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./settings.styles.css";
 // Animations:
 import { motion } from "framer-motion";
@@ -8,9 +8,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronCircleLeft,
   faUserAstronaut,
+  faPaintRoller,
+  faAddressCard,
 } from "@fortawesome/free-solid-svg-icons";
 
-const Settings = ({ showSettings, showAccount }) => {
+const Settings = ({ showSettings, showAccount, showTheme }) => {
+  const navigate = useNavigate();
   return (
     <div className="settings">
       <motion.button
@@ -23,6 +26,7 @@ const Settings = ({ showSettings, showAccount }) => {
       </motion.button>
       <ul className="settings-menu chat-menu-ul">
         <li
+          className="btn-grad"
           onClick={() => {
             showAccount(true);
             showSettings(false);
@@ -31,10 +35,21 @@ const Settings = ({ showSettings, showAccount }) => {
           <FontAwesomeIcon icon={faUserAstronaut} />
           Account
         </li>
-        <li>Theme</li>
-        <Link to={"/about"}>
-          <li>About</li>
-        </Link>
+        <li
+          className="btn-grad"
+          onClick={() => {
+            showTheme(true);
+            showSettings(false);
+          }}
+        >
+          <FontAwesomeIcon icon={faPaintRoller} />
+          Theme
+        </li>
+
+        <li className="btn-grad" onClick={() => navigate("/about")}>
+          <FontAwesomeIcon icon={faAddressCard} />
+          About
+        </li>
       </ul>
     </div>
   );

@@ -11,8 +11,8 @@ const ChatOptions = ({ x, y, showMenu }) => {
     <div className="msg-op-list" style={style()}>
       <ul>
         <li>Delete Chat</li>
-        <li>Mute</li>
-        <li>Archive</li>
+        {/* <li>Mute</li>
+        <li>Archive</li> */}
       </ul>
     </div>
   );

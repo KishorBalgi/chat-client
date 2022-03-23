@@ -6,6 +6,7 @@ import SearchBar from "../search-bar/search-bar.component";
 import ChatList from "../chat-list/chat-list.component";
 import Profile from "../profile/profile.component";
 import Settings from "../settings/settings.component";
+import Theme from "../theme/theme.components";
 import Account from "../account/account.components";
 import ChangePassword from "../changePassword/changePassword.component";
 import { socket } from "../../pages/app/apppage.component";
@@ -15,6 +16,7 @@ import { updateChatListOnNewMsg } from "../../redux/chat-list/chat-list.actions"
 const ChatMenu = ({ updateChatlist }) => {
   const [showProfile, setShowProfile] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
+  const [showTheme, setShowTheme] = useState(false);
   const [showAccount, setShowAccount] = useState(false);
   const [showChgPass, setShowChgPass] = useState(false);
   useEffect(() => {
@@ -33,7 +35,11 @@ const ChatMenu = ({ updateChatlist }) => {
   if (showSettings) {
     return (
       <div className="chat-menu">
-        <Settings showSettings={setShowSettings} showAccount={setShowAccount} />
+        <Settings
+          showSettings={setShowSettings}
+          showAccount={setShowAccount}
+          showTheme={setShowTheme}
+        />
       </div>
     );
   }
@@ -46,6 +52,13 @@ const ChatMenu = ({ updateChatlist }) => {
           showAccount={setShowAccount}
           showChgPass={setShowChgPass}
         />
+      </div>
+    );
+  }
+  if (showTheme) {
+    return (
+      <div className="chat-menu">
+        <Theme showSettings={setShowSettings} showTheme={setShowTheme} />
       </div>
     );
   }

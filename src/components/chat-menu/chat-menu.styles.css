@@ -2,7 +2,7 @@
   width: 100%;
   height: 100vh;
   overflow-y: scroll;
-  background-color: rgb(58, 58, 58);
+  background-color: var(--clr-primary);
 }
 .chat-menu-bar {
   position: fixed;
@@ -23,10 +23,7 @@
   .chat-menu-bar {
     width: 100%;
   }
-}
-@media only screen and (max-width: 800px) {
   .chat-menu {
-    position: relative;
     width: 100vw;
     z-index: 5;
   }

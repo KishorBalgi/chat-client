@@ -1,11 +1,11 @@
 ::placeholder {
-  color: #fff;
+  color: var(--clr-font);
 }
 .App {
   width: 100vw;
 }
 .chat-dis {
-  min-width: 300px;
+  min-width: 50px;
   max-width: 600px;
   height: fit-content;
   display: flex;
@@ -17,14 +17,16 @@
 }
 .chat-txt {
   width: fit-content;
-  color: #fff;
+  color: var(--clr-font);
   align-self: flex-start;
-  font-size: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  padding-bottom: 5px;
 }
 .chat-time {
   align-self: flex-end;
   width: fit-content;
-  color: var(--clr-primary-lighter);
+  color: var(--clr-font);
   font-size: 12px;
 }
 
@@ -104,13 +106,36 @@
 .btn-profile-update,
 .btn-password-change {
   width: 100%;
-  color: #fff;
+  color: var(--clr-font);
   border: none;
   text-align: center;
   outline: none;
   padding: 10px 0;
   font-size: 16px;
-  background: rgb(114, 114, 114);
+  background: var(--clr-primary-highlight);
   border-radius: 5px;
   transition: all 0.5s ease;
+}
+/* Btn Gradient */
+.btn-grad {
+  background-image: linear-gradient(
+    to right,
+    #da22ff 0%,
+    #9733ee 51%,
+    #da22ff 100%
+  );
+}
+.btn-grad {
+  text-align: center;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  display: block;
+}
+
+.btn-grad:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
 }

@@ -16,8 +16,8 @@ const MessageOptions = ({ x, y, showMenu, id, deleteMsg }) => {
     <div className="msg-op-list" style={style()}>
       <ul>
         <li onClick={handleDeleteMsg}>Delete message</li>
-        <li>Reply</li>
-        <li>Copy link</li>
+        {/* <li>Reply</li>
+        <li>Copy link</li> */}
       </ul>
     </div>
   );

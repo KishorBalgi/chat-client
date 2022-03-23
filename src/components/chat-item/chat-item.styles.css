@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 15px 0;
-  border-bottom: 1px #000 solid;
+  border-bottom: 1px var(--clr-chat-border) solid;
   background-color: var(--clr-primary);
   cursor: pointer;
 }
@@ -17,11 +17,13 @@
   width: 50px;
   height: 50px;
   border-radius: 50px;
+  transition: all 0.5s ease;
 }
 .chat-item-name {
   margin: 0 0 0 20px;
   font-size: 17px;
-  color: rgb(199, 199, 199);
+  font-weight: 600;
+  color: var(--clr-font);
 }
 .chat-item-timestamp {
   margin: 0 25px;
@@ -29,4 +31,7 @@
 }
 .chat-item:hover {
   background-color: var(--clr-primary-highlight);
+}
+.chat-item:hover .chat-item-img {
+  transform: scale(1.2);
 }

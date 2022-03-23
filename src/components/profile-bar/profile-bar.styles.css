@@ -1,6 +1,6 @@
 .profile-bar {
   width: 100%;
-  background-color: #000;
+  background-color: var(--clr-primary-theme);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -25,4 +25,8 @@
   margin: 0 15px;
   padding: 0 5px;
   font-size: 20px;
+  transition: all 0.5s ease;
+}
+.btn-menu:hover {
+  transform: scale(1.2);
 }

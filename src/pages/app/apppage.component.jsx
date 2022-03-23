@@ -45,7 +45,7 @@ const AppPage = ({ isLoggedIn, checkSavedLogin }) => {
         className="home
         "
       >
-        <Spinner msg="loading..." />
+        <Spinner msg="Loading" />
       </div>
     );
   }

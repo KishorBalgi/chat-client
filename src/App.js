@@ -1,20 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 // Components:
 import Sinlog from "./components/sinlog/sinlog.component";
 import { motion } from "framer-motion";
 // Redux:
-// import { connect } from "react-redux";
-// import { createStructuredSelector } from "reselect";
-// import { selectIsLoggedIn } from "./redux/user/user.selector";
+import { connect } from "react-redux";
+import { setTheme } from "./redux/user/user.actions";
 
 // Pages:
 import AboutPage from "./pages/about/aboutpage.component";
 import AppPage from "./pages/app/apppage.component";
 import HomePage from "./pages/home/homepage.component";
 
-function App() {
+function App({ setTheme }) {
+  useEffect(() => {
+    const theme = localStorage.getItem("app-theme");
+    setTheme(theme);
+  });
   return (
     <div className="App">
       <motion.div className="alert"></motion.div>
@@ -27,6 +30,7 @@ function App() {
     </div>
   );
 }
-
-export default App;
-// https://chat-box-app-server.herokuapp.com
+const mapDispatchToProps = (dispatch) => ({
+  setTheme: (theme) => dispatch(setTheme(theme)),
+});
+export default connect(null, mapDispatchToProps)(App);

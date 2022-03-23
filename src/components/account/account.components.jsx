@@ -4,7 +4,12 @@ import "./account.styles.css";
 import { motion } from "framer-motion";
 // Icons:
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronCircleLeft } from "@fortawesome/free-solid-svg-icons";
+import {
+  faChevronCircleLeft,
+  faIdBadge,
+  faPen,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Account = ({ showSettings, showProfile, showAccount, showChgPass }) => {
   return (
@@ -22,22 +27,29 @@ const Account = ({ showSettings, showProfile, showAccount, showChgPass }) => {
       </motion.button>
       <ul className="account-options chat-menu-ul">
         <li
+          className="btn-grad"
           onClick={() => {
             showProfile(true);
             showAccount(false);
           }}
         >
+          <FontAwesomeIcon icon={faIdBadge} />
           Profile
         </li>
         <li
+          className="btn-grad"
           onClick={() => {
             showChgPass(true);
             showAccount(false);
           }}
         >
+          <FontAwesomeIcon icon={faPen} />
           Update Password
         </li>
-        <li>Delete account</li>
+        <li className="btn-grad">
+          <FontAwesomeIcon icon={faTrash} />
+          Delete account
+        </li>
       </ul>
     </div>
   );

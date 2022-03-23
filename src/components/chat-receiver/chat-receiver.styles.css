@@ -1,6 +1,6 @@
 .chat-left {
   align-self: flex-start;
-  background-color: var(--clr-receiver);
+  background-color: var(--clr-primary-theme-light);
   border-top-left-radius: 0px;
   margin-right: 130px;
 }

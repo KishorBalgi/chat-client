@@ -27,10 +27,16 @@ const Chat = ({ appendChat, currentChat }) => {
   }
   return (
     <form className="chat" onSubmit={handleChatSubmit}>
-      <input type="text" className="chat-input" placeholder="Type a message" />
-      <button type="submit" className="chat-send">
-        <FontAwesomeIcon icon={faPaperPlane} />
-      </button>
+      <div>
+        <input
+          type="text"
+          className="chat-input"
+          placeholder="Type a message"
+        />
+        <button type="submit" className="chat-send">
+          <FontAwesomeIcon icon={faPaperPlane} />
+        </button>
+      </div>
     </form>
   );
 };

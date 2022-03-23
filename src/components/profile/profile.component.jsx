@@ -50,7 +50,7 @@ const Profile = ({
           <input type="file" id="img" />
           <motion.button
             whileTap={{ scale: 0.3 }}
-            className="btn-profile-img-upload"
+            className="btn-profile-img-upload btn-grad"
             onClick={() => document.getElementById("img").click()}
           >
             Choose Photo
@@ -77,7 +77,7 @@ const Profile = ({
         <div>
           <motion.button
             whileTap={{ scale: 0.3 }}
-            className="btn-profile-update"
+            className="btn-profile-update btn-grad"
             onClick={() => update(username, email)}
           >
             {updating ? "Updating..." : "Update"}

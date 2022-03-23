@@ -4,6 +4,7 @@ import "./chat-receiver.styles.css";
 export const Receiver = ({ _id, message, timestamp }) => {
   const divRef = useRef(null);
   useEffect(() => {
+    console.log(divRef);
     divRef.current.scrollIntoView({ behavior: "smooth" });
   });
   return (

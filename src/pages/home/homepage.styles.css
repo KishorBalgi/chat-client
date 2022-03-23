@@ -1,5 +1,5 @@
 .home {
-  background-color: rgb(63, 63, 63);
+  background-color: var(--clr-primary);
   width: 100vw;
   height: 100vh;
   display: flex;
