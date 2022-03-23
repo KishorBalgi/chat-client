@@ -6,12 +6,9 @@ import "./chat-box-bar.styles.css";
 import { socket } from "../../pages/app/apppage.component";
 
 const ChatBar = ({ currentChat }) => {
-  const online = document.querySelector(".user-online");
   useEffect(() => {
-    console.log(currentChat);
-    console.log(socket);
+    const online = document.querySelector(".user-online");
     socket.emit("isOnline", currentChat, (isOnline) => {
-      console.log("Is Online : " + isOnline);
       if (isOnline) {
         online.style.backgroundColor = "green";
       }
