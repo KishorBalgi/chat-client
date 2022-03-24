@@ -69,12 +69,12 @@ label {
   margin: 0 5px;
 }
 .btn-sinlog-submit {
-  background-color: #fff;
+  background-color: var(--clr-font);
   padding: 5px 10px;
   border-radius: 5px;
   font-weight: bold;
   font-size: 16px;
-  color: var(--clr-font);
+  color: var(--clr-font-compl);
   transition: all 1s ease;
 }
 .btn-sinlog-submit:hover {

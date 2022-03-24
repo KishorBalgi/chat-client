@@ -8,9 +8,20 @@ import { socket } from "../../pages/app/apppage.component";
 const ChatBar = ({ currentChat }) => {
   useEffect(() => {
     const online = document.querySelector(".user-online");
-    socket.emit("isOnline", currentChat, (isOnline) => {
+    socket.emit("isOnline", currentChat._id, (isOnline) => {
+      console.log(isOnline);
       if (isOnline) {
-        online.style.backgroundColor = "green";
+        online.style.backgroundColor = "var(--clr-online)";
+      }
+    });
+    socket.on("offline", (id) => {
+      if (currentChat._id === id) {
+        online.style.backgroundColor = "var(--clr-primary-highlight)";
+      }
+    });
+    socket.on("online", (id) => {
+      if (currentChat._id === id) {
+        online.style.backgroundColor = "var(--clr-online)";
       }
     });
   }, [currentChat]);

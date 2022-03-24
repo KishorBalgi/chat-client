@@ -1,6 +1,6 @@
 {
-  "name": "Chatter",
-  "short_name": "Chatter",
+  "name": "Chit Chat",
+  "short_name": "Chit Chat",
   "display": "standalone",
   "orientation": "portrait",
   "scope": "/",

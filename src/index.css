@@ -1,4 +1,6 @@
 :root {
+  /* Constant */
+  --clr-online: #58d68d;
   /* Default */
   --clr-primary: #fafafa;
   --clr-primary-highlight: #e4e5f1;
