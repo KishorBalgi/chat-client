@@ -225,23 +225,29 @@ export const updatePassword = (currentPass, newPass) => {
   };
 };
 // Update profile pic:
-export const updateProfilePic = () => {
+export const updateProfilePic = (remove) => {
   return (dispatch) => {
     const state = store.getState();
     const userData = state.user.userData;
-    console.log(userData);
     dispatch(updateProfilePicStart());
     const form = new FormData();
-    if (!document.getElementById("imgUploadInp").files[0]) return;
-    form.append("photo", document.getElementById("imgUploadInp").files[0]);
+    if (document.getElementById("imgUploadInp").files[0] && !remove) {
+      form.append("photo", document.getElementById("imgUploadInp").files[0]);
+    }
+    if (remove) {
+      form.append("remove", true);
+    }
+
     api
       .post("/api/v1/user/uploadProfilePic", form)
       .then((res) => {
         if (res.data.status !== "success") throw res.data;
-        if (res.data.status === "success") {
+        if (res.data.status === "success" && res.data.photo) {
           userData.photo = res.data.photo;
-          dispatch(updateSuccessful(userData));
+        } else {
+          userData.photo = null;
         }
+        dispatch(updateSuccessful(userData));
         dispatch(updateProfilePicComplete());
       })
       .catch((err) => {

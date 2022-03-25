@@ -149,6 +149,12 @@ const Profile = ({
               <motion.button
                 whileTap={{ scale: 0.3 }}
                 className="btn-profile-pic btn-grad"
+                onClick={() => {
+                  updateProfilePic(true);
+                  setShowSaveImgBtn(false);
+                  document.getElementById("imgUpload").src =
+                    "https://i.ibb.co/d5RgxfH/user-blank.png";
+                }}
               >
                 Remove photo
               </motion.button>
@@ -156,7 +162,7 @@ const Profile = ({
                 <motion.button
                   whileTap={{ scale: 0.3 }}
                   className="btn-profile-pic btn-grad"
-                  onClick={() => updateProfilePic()}
+                  onClick={() => updateProfilePic(false)}
                 >
                   Save
                 </motion.button>
@@ -186,6 +192,6 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => ({
   update: (name, email) => dispatch(updateMe(name, email)),
-  updateProfilePic: () => dispatch(updateProfilePic()),
+  updateProfilePic: (remove) => dispatch(updateProfilePic(remove)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);
