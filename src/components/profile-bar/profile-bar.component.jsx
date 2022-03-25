@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./profile-bar.styles.css";
+import { _arrayBufferToBase64 } from "../../utils/encrypt_storage/imageHandlers";
 // Animations:
 import { motion } from "framer-motion";
 // Component:
@@ -29,11 +30,18 @@ const ProfileBar = ({ userData, showProfile, showSettings }) => {
   return (
     <div className="profile-bar">
       <motion.img
-        whileHover={{ scale: 1.2 }}
+        src={
+          userData.photo
+            ? `data:image/jpeg;base64,${_arrayBufferToBase64(
+                userData.photo.data
+              )}`
+            : "https://i.ibb.co/d5RgxfH/user-blank.png"
+        }
+        alt={userData.name}
         className="profile-bar-img"
-        src={userData.img}
         onClick={() => showProfile(true)}
       />
+
       <button className="chat-send">
         <FontAwesomeIcon
           icon={faSearch}

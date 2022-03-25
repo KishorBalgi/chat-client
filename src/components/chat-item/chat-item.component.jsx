@@ -4,8 +4,16 @@ import "./chat-item.styles.css";
 import { fetchChatsAsync } from "../../redux/chats/chats.actions";
 import { connect } from "react-redux";
 import { socket } from "../../pages/app/apppage.component";
+import { _arrayBufferToBase64 } from "../../utils/encrypt_storage/imageHandlers";
 
-const ChatItem = ({ _id, name, img, fetchChatsAsync, setCurrentChat }) => {
+const ChatItem = ({
+  _id,
+  name,
+  img,
+  photo,
+  fetchChatsAsync,
+  setCurrentChat,
+}) => {
   function handleChatSelect(e) {
     const id = e.target.getAttribute("data-id");
     socket.emit("join-room", { id, currRoom: socket.currentRoom }, (msg) => {
@@ -17,7 +25,16 @@ const ChatItem = ({ _id, name, img, fetchChatsAsync, setCurrentChat }) => {
   return (
     <div className="chat-item" onClick={handleChatSelect} data-id={_id}>
       <div className="chat-item-det" data-id={_id}>
-        <img src={img} alt="img" className="chat-item-img" data-id={_id} />
+        <img
+          src={
+            photo
+              ? `data:image/jpeg;base64,${_arrayBufferToBase64(photo.data)}`
+              : "https://i.ibb.co/d5RgxfH/user-blank.png"
+          }
+          alt={name}
+          className="chat-item-img"
+          data-id={_id}
+        />
         <p className="chat-item-name" data-id={_id}>
           {name}
         </p>

@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import "./profile.styles.css";
+import {
+  _arrayBufferToBase64,
+  loadImagePreview,
+} from "../../utils/encrypt_storage/imageHandlers";
 // Animations:
 import { motion } from "framer-motion";
 // Icons:
@@ -42,18 +46,31 @@ const Profile = ({
         transition={{ duration: 0.5 }}
         className="profile-img"
       >
-        <img src={userData.img} alt="Profile pic" />
+        <img
+          src={
+            userData.photo
+              ? `data:image/jpeg;base64,${_arrayBufferToBase64(
+                  userData.photo.data
+                )}`
+              : "https://i.ibb.co/d5RgxfH/user-blank.png"
+          }
+          alt={userData.name}
+        />
       </motion.div>
       <div className="profile-details menu-form">
         <div>
-          <label htmlFor="img">Update Photo:</label>
-          <input type="file" id="img" />
+          <input
+            type="file"
+            accept="image/*"
+            id="img"
+            onChange={(event) => loadImagePreview(event, "img")}
+          />
           <motion.button
             whileTap={{ scale: 0.3 }}
             className="btn-profile-img-upload btn-grad"
             onClick={() => document.getElementById("img").click()}
           >
-            Choose Photo
+            Update Photo
           </motion.button>
         </div>
         <div>

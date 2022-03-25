@@ -4,25 +4,26 @@ import { createStructuredSelector } from "reselect";
 import { selectCurrentChat } from "../../redux/chats/chats.selector";
 import "./chat-box-bar.styles.css";
 import { socket } from "../../pages/app/apppage.component";
+import { _arrayBufferToBase64 } from "../../utils/encrypt_storage/imageHandlers";
 
 const ChatBar = ({ currentChat }) => {
   useEffect(() => {
     const online = document.querySelector(".user-online");
+    function setOnline() {
+      online.style.backgroundColor = "var(--clr-online)";
+    }
+    function setOffline() {
+      online.style.backgroundColor = "var(--clr-primary-highlight)";
+    }
     socket.emit("isOnline", currentChat._id, (isOnline) => {
-      console.log(isOnline);
-      if (isOnline) {
-        online.style.backgroundColor = "var(--clr-online)";
-      }
+      if (isOnline) setOnline();
+      else setOffline();
     });
     socket.on("offline", (id) => {
-      if (currentChat._id === id) {
-        online.style.backgroundColor = "var(--clr-primary-highlight)";
-      }
+      if (currentChat._id === id) setOffline();
     });
     socket.on("online", (id) => {
-      if (currentChat._id === id) {
-        online.style.backgroundColor = "var(--clr-online)";
-      }
+      if (currentChat._id === id) setOnline();
     });
   }, [currentChat]);
 
@@ -30,7 +31,13 @@ const ChatBar = ({ currentChat }) => {
     <div className="chat-box-bar">
       <div className="chat-box-bar-det">
         <img
-          src={currentChat.img}
+          src={
+            currentChat.photo
+              ? `data:image/jpeg;base64,${_arrayBufferToBase64(
+                  currentChat.photo.data
+                )}`
+              : "https://i.ibb.co/d5RgxfH/user-blank.png"
+          }
           alt={currentChat.name}
           className="chat-box-bar-img"
         />
