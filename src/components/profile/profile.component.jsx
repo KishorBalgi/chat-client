@@ -8,7 +8,10 @@ import {
 import { motion } from "framer-motion";
 // Icons:
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronCircleLeft } from "@fortawesome/free-solid-svg-icons";
+import {
+  faChevronCircleLeft,
+  faWindowClose,
+} from "@fortawesome/free-solid-svg-icons";
 // Redux:
 import { createStructuredSelector } from "reselect";
 import { connect } from "react-redux";
@@ -30,6 +33,8 @@ const Profile = ({
 }) => {
   const [username, setUsername] = useState(userData.username);
   const [email, setEmail] = useState(userData.email);
+  const [showImageUploader, setShowImageUploader] = useState(false);
+  const [showSaveImgBtn, setShowSaveImgBtn] = useState(false);
 
   return (
     <div className="profile">
@@ -59,16 +64,10 @@ const Profile = ({
       </motion.div>
       <div className="profile-details menu-form">
         <div>
-          <input
-            type="file"
-            accept="image/*"
-            id="img"
-            onChange={(event) => loadImagePreview(event, "img")}
-          />
           <motion.button
             whileTap={{ scale: 0.3 }}
             className="btn-profile-img-upload btn-grad"
-            onClick={() => document.getElementById("img").click()}
+            onClick={() => setShowImageUploader(true)}
           >
             Update Photo
           </motion.button>
@@ -101,6 +100,63 @@ const Profile = ({
           </motion.button>
         </div>
       </div>
+      {showImageUploader ? (
+        <div className="profile-img-uploader">
+          <div className="profile-img-uploader-box">
+            <FontAwesomeIcon
+              icon={faWindowClose}
+              className="close-profile-pic-uploder"
+              onClick={() => setShowImageUploader(false)}
+            />
+            <div className="profile-img-uploader-img">
+              <input
+                type="file"
+                accept="image/*"
+                id="imgUploadInp"
+                onChange={(event) => {
+                  loadImagePreview(event, "imgUpload");
+                  setShowSaveImgBtn(true);
+                }}
+              />
+              <img
+                className="profile-img-uploader-img"
+                id="imgUpload"
+                src={
+                  userData.photo
+                    ? `data:image/jpeg;base64,${_arrayBufferToBase64(
+                        userData.photo.data
+                      )}`
+                    : "https://i.ibb.co/d5RgxfH/user-blank.png"
+                }
+                alt="img"
+              />
+            </div>
+            <div className="profile-img-uploader-btns">
+              <motion.button
+                whileTap={{ scale: 0.3 }}
+                className="btn-profile-pic btn-grad"
+              >
+                Remove photo
+              </motion.button>
+              {showSaveImgBtn ? (
+                <motion.button
+                  whileTap={{ scale: 0.3 }}
+                  className="btn-profile-pic btn-grad"
+                >
+                  Save
+                </motion.button>
+              ) : null}
+              <motion.button
+                whileTap={{ scale: 0.3 }}
+                className="btn-profile-pic btn-grad"
+                onClick={() => document.getElementById("imgUploadInp").click()}
+              >
+                Choose photo
+              </motion.button>
+            </div>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 };
