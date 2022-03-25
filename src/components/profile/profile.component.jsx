@@ -6,6 +6,7 @@ import {
 } from "../../utils/encrypt_storage/imageHandlers";
 // Animations:
 import { motion } from "framer-motion";
+import { Spinner } from "../spinner/spinner.component";
 // Icons:
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -20,8 +21,11 @@ import {
   selectUpdating,
   selectUpdateSuccess,
   selectUpdateErr,
+  selectProfPicUpdating,
+  selectProfPicUpdateErr,
 } from "../../redux/user/user.selector";
 import { updateMe } from "../../redux/user/user.actions";
+import { updateProfilePic } from "../../redux/user/user.actions";
 
 const Profile = ({
   userData,
@@ -30,6 +34,9 @@ const Profile = ({
   updateErr,
   update,
   showProfile,
+  updateProfilePic,
+  profPicUpdating,
+  profPicUpdateErr,
 }) => {
   const [username, setUsername] = useState(userData.username);
   const [email, setEmail] = useState(userData.email);
@@ -118,8 +125,15 @@ const Profile = ({
                   setShowSaveImgBtn(true);
                 }}
               />
+              {profPicUpdating ? (
+                <div className="profile-upload-spinner">
+                  <Spinner />
+                </div>
+              ) : null}
               <img
-                className="profile-img-uploader-img"
+                className={`profile-img-uploader-img ${
+                  profPicUpdating ? "img-blur" : ""
+                }`}
                 id="imgUpload"
                 src={
                   userData.photo
@@ -142,6 +156,7 @@ const Profile = ({
                 <motion.button
                   whileTap={{ scale: 0.3 }}
                   className="btn-profile-pic btn-grad"
+                  onClick={() => updateProfilePic()}
                 >
                   Save
                 </motion.button>
@@ -165,9 +180,12 @@ const mapStateToProps = createStructuredSelector({
   updating: selectUpdating,
   updated: selectUpdateSuccess,
   updateErr: selectUpdateErr,
+  profPicUpdating: selectProfPicUpdating,
+  profPicUpdateErr: selectProfPicUpdateErr,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   update: (name, email) => dispatch(updateMe(name, email)),
+  updateProfilePic: () => dispatch(updateProfilePic()),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

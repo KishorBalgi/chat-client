@@ -1,5 +1,6 @@
 import { userTypes } from "./user.types";
 import { encryptStorage } from "../../utils/encrypt_storage/encryptStorage";
+import store from "../store";
 import axios from "axios";
 // config axios:
 export const api = axios.create({
@@ -56,6 +57,18 @@ export const updateFailed = (msg) => ({
 export const updatePassSuccessful = (userData) => ({
   type: userTypes.UPDATE_PASS_SUCCESSFUL,
   payload: userData,
+});
+export const updateProfilePicStart = () => ({
+  type: userTypes.UPDATE_PROFILE_PIC_START,
+});
+
+export const updateProfilePicComplete = () => ({
+  type: userTypes.UPDATE_PROFILE_PIC_COMPLETE,
+});
+
+export const updateProfilePicFailed = (err) => ({
+  type: userTypes.UPDATE_PROFILE_PIC_FAILED,
+  payload: err,
 });
 // Login saved:
 export const checkSavedLogin = () => {
@@ -211,9 +224,32 @@ export const updatePassword = (currentPass, newPass) => {
     }
   };
 };
+// Update profile pic:
+export const updateProfilePic = () => {
+  return (dispatch) => {
+    const state = store.getState();
+    const userData = state.user.userData;
+    console.log(userData);
+    dispatch(updateProfilePicStart());
+    const form = new FormData();
+    if (!document.getElementById("imgUploadInp").files[0]) return;
+    form.append("photo", document.getElementById("imgUploadInp").files[0]);
+    api
+      .post("/api/v1/user/uploadProfilePic", form)
+      .then((res) => {
+        if (res.data.status !== "success") throw res.data;
+        if (res.data.status === "success") {
+          userData.photo = res.data.photo;
+          dispatch(updateSuccessful(userData));
+        }
+        dispatch(updateProfilePicComplete());
+      })
+      .catch((err) => {
+        dispatch(updateProfilePicFailed(err));
+      });
+  };
+};
 // Set Theme:
-// --clr-box-shadow: rgba(255, 255, 255, 0.4);
-
 export const setTheme = (theme) => {
   return () => {
     const root = document.querySelector(":root");

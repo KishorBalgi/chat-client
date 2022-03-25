@@ -11,6 +11,8 @@ const INITIAL_STATE = {
   updating: null,
   updateSuccess: null,
   updateErr: null,
+  profPicUpadting: false,
+  profPicUpdateErr: null,
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -85,6 +87,22 @@ const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         updating: false,
         updateSuccess: true,
+      };
+    case userTypes.UPDATE_PROFILE_PIC_START:
+      return {
+        ...state,
+        profPicUpadting: true,
+      };
+    case userTypes.UPDATE_PROFILE_PIC_COMPLETE:
+      return {
+        ...state,
+        profPicUpadting: false,
+      };
+    case userTypes.UPDATE_PROFILE_PIC_FAILED:
+      return {
+        ...state,
+        profPicUpadting: false,
+        profPicUpdateErr: action.payload,
       };
     default:
       return state;

@@ -50,3 +50,11 @@ export const selectUpdateErr = createSelector(
   [selectUser],
   (user) => user.updateErr
 );
+export const selectProfPicUpdating = createSelector(
+  [selectUser],
+  (user) => user.profPicUpadting
+);
+export const selectProfPicUpdateErr = createSelector(
+  [selectUser],
+  (user) => user.profPicUpdateErr
+);
