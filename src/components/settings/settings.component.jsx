@@ -18,7 +18,7 @@ const Settings = ({ showSettings, showAccount, showTheme }) => {
     <div className="settings">
       <motion.button
         whileHover={{ scale: 1.2 }}
-        whileTap={{ scale: 0.8 }}
+        whileTap={{ scale: 0.9 }}
         className="btn-profile-close"
         onClick={() => showSettings(false)}
       >

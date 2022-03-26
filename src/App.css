@@ -4,6 +4,9 @@
 .App {
   width: 100vw;
 }
+.hidden {
+  display: none;
+}
 .chat-dis {
   min-width: 50px;
   max-width: 600px;

@@ -7,7 +7,7 @@
   bottom: 0;
   background-color: var(--clr-primary-highlight);
 }
-.chat div {
+.chat-container {
   width: 80%;
   display: flex;
   align-items: center;
@@ -16,7 +16,7 @@
   width: 95%;
   height: 40px;
   font-size: 17px;
-  margin: 10px auto;
+  margin: 10px 20px;
   padding: 0 20px;
   color: var(--clr-font);
   outline: none;
@@ -28,11 +28,11 @@
 .chat-input::placeholder {
   color: var(--clr-font);
 }
-.chat-send {
+.chat-send,
+.chat-docs {
   border: none;
   background: none;
   border-radius: 50px;
-  margin-left: 15px;
   cursor: pointer;
   color: var(--clr-primary-theme-light);
   font-size: 25px;
@@ -42,7 +42,11 @@
   color: var(--clr-primary-theme);
 }
 @media only screen and (max-width: 600px) {
-  .chat {
+  .chat-container {
     width: 90%;
+  }
+  .chat {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
   }
 }

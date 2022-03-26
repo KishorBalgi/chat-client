@@ -49,18 +49,21 @@
   width: 50%;
   min-height: fit-content;
   max-height: 80vh;
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: var(--clr-primary-darker);
 }
 .profile-img-uploader-img {
   position: relative;
   width: 100%;
   border-radius: 10px;
-  margin: 30px 0 40px 0;
+  margin: 30px 0 45px 0;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow-y: scroll;
+}
+.profile-img-uploader-img::-webkit-scrollbar {
+  display: none;
 }
 .profile-upload-spinner {
   position: absolute;
@@ -80,6 +83,7 @@
   display: flex;
   justify-content: flex-end;
   padding: 10px 0;
+  border-radius: 10px;
   background-color: var(--clr-primary-highlight);
 }
 .close-profile-pic-uploder {

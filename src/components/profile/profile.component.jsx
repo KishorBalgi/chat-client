@@ -47,7 +47,7 @@ const Profile = ({
     <div className="profile">
       <motion.button
         whileHover={{ scale: 1.2 }}
-        whileTap={{ scale: 0.8 }}
+        whileTap={{ scale: 0.9 }}
         className="btn-profile-close"
         onClick={() => showProfile(false)}
       >
@@ -72,7 +72,7 @@ const Profile = ({
       <div className="profile-details menu-form">
         <div>
           <motion.button
-            whileTap={{ scale: 0.3 }}
+            whileTap={{ scale: 0.9 }}
             className="btn-profile-img-upload btn-grad"
             onClick={() => setShowImageUploader(true)}
           >
@@ -99,7 +99,7 @@ const Profile = ({
         </div>
         <div>
           <motion.button
-            whileTap={{ scale: 0.3 }}
+            whileTap={{ scale: 0.9 }}
             className="btn-profile-update btn-grad"
             onClick={() => update(username, email)}
           >
@@ -147,7 +147,7 @@ const Profile = ({
             </div>
             <div className="profile-img-uploader-btns">
               <motion.button
-                whileTap={{ scale: 0.3 }}
+                whileTap={{ scale: 0.9 }}
                 className="btn-profile-pic btn-grad"
                 onClick={() => {
                   updateProfilePic(true);
@@ -160,7 +160,7 @@ const Profile = ({
               </motion.button>
               {showSaveImgBtn ? (
                 <motion.button
-                  whileTap={{ scale: 0.3 }}
+                  whileTap={{ scale: 0.9 }}
                   className="btn-profile-pic btn-grad"
                   onClick={() => updateProfilePic(false)}
                 >
@@ -168,7 +168,7 @@ const Profile = ({
                 </motion.button>
               ) : null}
               <motion.button
-                whileTap={{ scale: 0.3 }}
+                whileTap={{ scale: 0.9 }}
                 className="btn-profile-pic btn-grad"
                 onClick={() => document.getElementById("imgUploadInp").click()}
               >

@@ -28,7 +28,7 @@ const ChangePassword = ({
     <div className="password-change">
       <motion.button
         whileHover={{ scale: 1.2 }}
-        whileTap={{ scale: 0.8 }}
+        whileTap={{ scale: 0.9 }}
         className="btn-profile-close"
         onClick={() => {
           showAccount(true);
@@ -58,7 +58,7 @@ const ChangePassword = ({
         </div>
         <div>
           <motion.button
-            whileTap={{ scale: 0.3 }}
+            whileTap={{ scale: 0.9 }}
             className="btn-password-change btn-grad"
             onClick={() => updatePass(current, newPass)}
           >
