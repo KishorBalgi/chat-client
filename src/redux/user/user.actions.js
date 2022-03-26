@@ -70,6 +70,13 @@ export const updateProfilePicFailed = (err) => ({
   type: userTypes.UPDATE_PROFILE_PIC_FAILED,
   payload: err,
 });
+export const delAccStart = () => ({
+  type: userTypes.DEL_ACC_START,
+});
+export const delAccFailed = (err) => ({
+  type: userTypes.DEL_ACC_FAILED,
+  payload: err,
+});
 // Login saved:
 export const checkSavedLogin = () => {
   return async (dispatch) => {
@@ -253,6 +260,20 @@ export const updateProfilePic = (remove) => {
       .catch((err) => {
         dispatch(updateProfilePicFailed(err));
       });
+  };
+};
+// Delete Account:
+export const deleteAccount = (password) => {
+  return (dispatch) => {
+    if (!password) return;
+    dispatch(delAccStart());
+    api
+      .delete(`/api/v1/user/deleteMe/${password}`)
+      .then(() => {
+        console.log("Hi");
+        dispatch(logout());
+      })
+      .catch((err) => delAccFailed(err));
   };
 };
 // Set Theme:

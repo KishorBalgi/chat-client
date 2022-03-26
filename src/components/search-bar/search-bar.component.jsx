@@ -28,6 +28,7 @@ const SearchBar = ({
         className="search-bar-input"
         id="user-search-input"
         placeholder="Search chat"
+        autoFocus="autoFocus"
         onChange={handleSearchChange}
       />
       <div className="user-serach-res">

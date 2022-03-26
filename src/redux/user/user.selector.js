@@ -58,3 +58,11 @@ export const selectProfPicUpdateErr = createSelector(
   [selectUser],
   (user) => user.profPicUpdateErr
 );
+export const selectDeletingAcc = createSelector(
+  [selectUser],
+  (user) => user.deletingAcc
+);
+export const selectDelAccErr = createSelector(
+  [selectUser],
+  (user) => user.delAccErr
+);

@@ -22,7 +22,7 @@ const Chat = ({ appendChat, currentChat }) => {
     socket.on("receive-message", (msg, uid) => {
       appendChat({ msg, uid });
     });
-  }, []);
+  });
   function handleChatSubmit(e) {
     e.preventDefault();
     const msg = e.target[0].value;
@@ -32,28 +32,32 @@ const Chat = ({ appendChat, currentChat }) => {
     e.target[0].value = "";
   }
   return (
-    <form className="chat" onSubmit={handleChatSubmit}>
+    <div className="chat">
       {showDocs ? <Documents /> : null}
-      <div className="chat-container">
-        <div>
-          <motion.button
-            whileTap={{ scale: 0.9 }}
-            className="chat-docs"
-            onClick={() => setShowDocs(!showDocs)}
-          >
-            <FontAwesomeIcon icon={faPaperclip} />
-          </motion.button>
-        </div>
+      <div>
+        <motion.button
+          whileTap={{ scale: 0.9 }}
+          className="chat-docs"
+          onClick={(e) => {
+            e.preventDefault();
+            setShowDocs(!showDocs);
+          }}
+          type="button"
+        >
+          <FontAwesomeIcon icon={faPaperclip} />
+        </motion.button>
+      </div>
+      <form className="chat-container" onSubmit={handleChatSubmit}>
         <input
           type="text"
           className="chat-input"
-          placeholder="Type a message"
+          placeholder="Type a message" autoFocus="autoFocus"
         />
         <button type="submit" className="chat-send">
           <FontAwesomeIcon icon={faPaperPlane} />
         </button>
-      </div>
-    </form>
+      </form>
+    </div>
   );
 };
 const mapStateToProps = createStructuredSelector({

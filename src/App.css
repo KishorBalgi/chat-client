@@ -100,7 +100,7 @@
 }
 .menu-form label {
   font-weight: bold;
-  color: #fff;
+  color: var(--clr-font);
   font-size: 20px;
   padding: 5px 10px;
 }

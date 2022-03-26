@@ -11,7 +11,13 @@ import {
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 
-const Account = ({ showSettings, showProfile, showAccount, showChgPass }) => {
+const Account = ({
+  showSettings,
+  showProfile,
+  showAccount,
+  showChgPass,
+  showDelAcc,
+}) => {
   return (
     <div className="account">
       <motion.button
@@ -46,7 +52,13 @@ const Account = ({ showSettings, showProfile, showAccount, showChgPass }) => {
           <FontAwesomeIcon icon={faPen} />
           Update Password
         </li>
-        <li className="btn-grad">
+        <li
+          className="btn-grad"
+          onClick={() => {
+            showDelAcc(true);
+            showAccount(false);
+          }}
+        >
           <FontAwesomeIcon icon={faTrash} />
           Delete account
         </li>

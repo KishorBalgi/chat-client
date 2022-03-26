@@ -8,6 +8,7 @@ import Profile from "../profile/profile.component";
 import Settings from "../settings/settings.component";
 import Theme from "../theme/theme.components";
 import Account from "../account/account.components";
+import DeleteAccount from "../delete-account/delete-account.component";
 import ChangePassword from "../changePassword/changePassword.component";
 import { socket } from "../../pages/app/apppage.component";
 import { connect } from "react-redux";
@@ -19,11 +20,12 @@ const ChatMenu = ({ updateChatlist }) => {
   const [showTheme, setShowTheme] = useState(false);
   const [showAccount, setShowAccount] = useState(false);
   const [showChgPass, setShowChgPass] = useState(false);
+  const [showDelAcc, setShowDelAcc] = useState(false);
   useEffect(() => {
     socket.on("new-message-from", (id) => {
       updateChatlist(id);
     });
-  }, []);
+  });
 
   if (showProfile) {
     return (
@@ -51,6 +53,7 @@ const ChatMenu = ({ updateChatlist }) => {
           showProfile={setShowProfile}
           showAccount={setShowAccount}
           showChgPass={setShowChgPass}
+          showDelAcc={setShowDelAcc}
         />
       </div>
     );
@@ -68,6 +71,16 @@ const ChatMenu = ({ updateChatlist }) => {
         <ChangePassword
           showAccount={setShowAccount}
           showChgPass={setShowChgPass}
+        />
+      </div>
+    );
+  }
+  if (showDelAcc) {
+    return (
+      <div className="chat-menu">
+        <DeleteAccount
+          showDelAcc={setShowDelAcc}
+          showAccount={setShowAccount}
         />
       </div>
     );

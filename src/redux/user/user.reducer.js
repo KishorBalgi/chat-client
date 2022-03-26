@@ -13,6 +13,8 @@ const INITIAL_STATE = {
   updateErr: null,
   profPicUpadting: false,
   profPicUpdateErr: null,
+  deletingAcc: false,
+  delAccErr: null,
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -104,6 +106,10 @@ const userReducer = (state = INITIAL_STATE, action) => {
         profPicUpadting: false,
         profPicUpdateErr: action.payload,
       };
+    case userTypes.DEL_ACC_START:
+      return { ...state, deletingAcc: true };
+    case userTypes.DEL_ACC_FAILED:
+      return { ...state, deletingAcc: true, delAccErr: action.payload };
     default:
       return state;
   }

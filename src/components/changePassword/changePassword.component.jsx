@@ -21,9 +21,8 @@ const ChangePassword = ({
   showAccount,
   showChgPass,
 }) => {
-  const [current, setCurrent] = useState("--------");
-  const [newPass, setNewPass] = useState("--------");
-
+  const [current, setCurrent] = useState(null);
+  const [newPass, setNewPass] = useState(null);
   return (
     <div className="password-change">
       <motion.button
@@ -43,8 +42,8 @@ const ChangePassword = ({
           <input
             type="password"
             id="current"
-            placeholder={current}
             onChange={(e) => setCurrent(e.target.value)}
+            autoFocus="autoFocus"
           />
         </div>
         <div>
@@ -52,7 +51,6 @@ const ChangePassword = ({
           <input
             type="password"
             id="newPass"
-            placeholder={newPass}
             onChange={(e) => setNewPass(e.target.value)}
           />
         </div>
