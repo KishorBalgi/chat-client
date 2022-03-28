@@ -22,7 +22,7 @@ const Chat = ({ appendChat, currentChat }) => {
     socket.on("receive-message", (msg, uid) => {
       appendChat({ msg, uid });
     });
-  });
+  }, []);
   function handleChatSubmit(e) {
     e.preventDefault();
     const msg = e.target[0].value;
@@ -51,7 +51,8 @@ const Chat = ({ appendChat, currentChat }) => {
         <input
           type="text"
           className="chat-input"
-          placeholder="Type a message" autoFocus="autoFocus"
+          placeholder="Type a message"
+          autoFocus="autoFocus"
         />
         <button type="submit" className="chat-send">
           <FontAwesomeIcon icon={faPaperPlane} />
