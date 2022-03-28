@@ -25,7 +25,7 @@ const ChatMenu = ({ updateChatlist }) => {
     socket.on("new-message-from", (id) => {
       updateChatlist(id);
     });
-  });
+  }, []);
 
   if (showProfile) {
     return (
