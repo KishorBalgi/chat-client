@@ -5,6 +5,7 @@ const user = encryptStorage.getItem("user");
 
 export const appendChatUtil = (chat, chats) => {
   if (chat.msg === "") return chats;
+  const today = new Date().toLocaleDateString("en-IN");
   const time = new Date().toLocaleTimeString("en-US", {
     hour12: false,
     hour: "2-digit",
@@ -21,23 +22,34 @@ export const appendChatUtil = (chat, chats) => {
     ) : (
       <Receiver {...obj} key={Date.now()} />
     );
-  return [...chats, c];
+
+  if (chats.length === 0 || chats.at(-1).timestamp !== today) {
+    const chatToday = { _id: "t8gfu3ju90", chats: [c], timestamp: today };
+    console.log(chatToday);
+    return [...chats, chatToday];
+  } else {
+    chats.at(-1).chats = [...chats.at(-1).chats, c];
+    return [...chats];
+  }
 };
 
 export const modifyChats = (chats) => {
   let ch = chats.map((c) => {
-    const date = new Date(c.timestamp);
-    const time = date.toLocaleTimeString("en-US", {
-      hour12: false,
-      hour: "2-digit",
-      minute: "2-digit",
+    c.chats = c.chats.map((e) => {
+      const date = new Date(e.timestamp);
+      const time = date.toLocaleTimeString("en-US", {
+        hour12: false,
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+      e.timestamp = time;
+      return e.user === user.id ? (
+        <Sender {...e} key={e._id} />
+      ) : (
+        <Receiver {...e} key={e._id} />
+      );
     });
-    c.timestamp = time;
-    return c.user === user.id ? (
-      <Sender {...c} key={c._id} />
-    ) : (
-      <Receiver {...c} key={c._id} />
-    );
+    return c;
   });
   return ch;
 };
@@ -48,7 +60,13 @@ export const getCurrentChat = (users) => {
 };
 
 export const deleteAMessage = (id, chats) => {
-  const i = chats.findIndex((c) => c.key === id);
-  chats.splice(i, 1);
+  chats = chats.map((c) => {
+    console.log(c);
+    const i = c.chats.findIndex((c) => c.key === id);
+    console.log(i);
+    if (i !== -1) c.chats.splice(i, 1);
+    console.log(c);
+    return c;
+  });
   return [...chats];
 };
