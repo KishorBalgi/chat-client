@@ -20,7 +20,8 @@ const ChatItem = ({
       socket.currentRoom = msg;
     });
     fetchChatsAsync(id);
-    document.querySelector(".app-page").scrollIntoView({ behavior: "smooth" });
+    if (window.screen.width <= 800)
+      document.querySelector(".chat-box").style.position = "absolute";
   }
   return (
     <div className="chat-item" onClick={handleChatSelect} data-id={_id}>

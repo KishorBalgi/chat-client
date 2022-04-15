@@ -27,7 +27,14 @@ const Chats = ({ chats, isFetching, errMsg }) => {
     <div className="chats">
       {/* <MessageOptions x={x} y={y} showMenu={showMenu} id={id} /> */}
       {chats.length === 0 ? (
-        <p style={{ color: "#fff", fontSize: "20px", margin: "auto 0" }}>
+        <p
+          style={{
+            color: "var(--clr-font)",
+            fontSize: "20px",
+            textAlign: "center",
+            marginTop: "45vh",
+          }}
+        >
           This is the begining of your chats!
         </p>
       ) : (

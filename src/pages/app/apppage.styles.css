@@ -16,6 +16,6 @@
 
 @media only screen and (max-width: 800px) {
   .app-page {
-    overflow: scroll;
+    overflow: hidden;
   }
 }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./chat-receiver.styles.css";
+import Linkify from "react-linkify";
 
 export const Receiver = ({ _id, message, timestamp }) => {
   const divRef = useRef(null);
@@ -9,7 +10,7 @@ export const Receiver = ({ _id, message, timestamp }) => {
   return (
     <div ref={divRef} className="chat-dis chat-left" data-id={_id}>
       <p className="chat-txt" data-id={_id}>
-        {message}
+        <Linkify>{message}</Linkify>
       </p>
       <p className="chat-time" data-id={_id}>
         {timestamp}

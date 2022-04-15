@@ -14,6 +14,8 @@ const SearchedUser = ({ _id, name, photo, fetchChats, searchUsers }) => {
       socket.currentRoom = msg;
     });
     fetchChats(id);
+    if (window.screen.width <= 800)
+      document.querySelector(".chat-box").style.position = "absolute";
     document.getElementById("user-search-input").value = "";
     searchUsers("");
   }

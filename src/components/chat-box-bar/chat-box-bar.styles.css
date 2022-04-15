@@ -22,6 +22,11 @@
   border-radius: 50px;
   cursor: pointer;
 }
+.chat-box-bar-back {
+  margin: 0 10px 0 0;
+  font-size: 20px;
+  color: var(--clr-font);
+}
 .user-online {
   width: 12px;
   height: 12px;

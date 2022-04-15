@@ -5,6 +5,8 @@ import { selectCurrentChat } from "../../redux/chats/chats.selector";
 import "./chat-box-bar.styles.css";
 import { socket } from "../../pages/app/apppage.component";
 import { _arrayBufferToBase64 } from "../../utils/encrypt_storage/imageHandlers";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLongArrowAltLeft } from "@fortawesome/free-solid-svg-icons";
 
 const ChatBar = ({ currentChat }) => {
   useEffect(() => {
@@ -26,10 +28,21 @@ const ChatBar = ({ currentChat }) => {
       if (currentChat._id === id) setOnline();
     });
   }, [currentChat]);
+  function handleChatBack() {
+    document.querySelector(".chat-box").style.position = "relative";
+  }
 
   return currentChat ? (
     <div className="chat-box-bar">
       <div className="chat-box-bar-det">
+        {window.screen.width <= 800 ? (
+          <FontAwesomeIcon
+            icon={faLongArrowAltLeft}
+            className="chat-box-bar-back"
+            onClick={handleChatBack}
+          />
+        ) : null}
+
         <img
           src={
             currentChat.photo

@@ -3,6 +3,14 @@ import { Receiver } from "../../components/chat-receiver/chat-receiver.component
 import { encryptStorage } from "../../utils/encrypt_storage/encryptStorage";
 const user = encryptStorage.getItem("user");
 
+// function linkify(text) {
+//   var urlRegex =
+//     /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi;
+//   return text.replace(urlRegex, function (url) {
+//     return `<a href="${url}">${url}</a>`;
+//   });
+// }
+
 export const appendChatUtil = (chat, chats) => {
   if (chat.msg === "") return chats;
   const today = new Date().toLocaleDateString("en-IN");
@@ -43,6 +51,7 @@ export const modifyChats = (chats) => {
         minute: "2-digit",
       });
       e.timestamp = time;
+      // e.message = linkify(e.message);
       return e.user === user.id ? (
         <Sender {...e} key={e._id} />
       ) : (

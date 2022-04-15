@@ -8,8 +8,8 @@
 }
 @media only screen and (max-width: 800px) {
   .chat-box {
+    position: relative;
     width: 100vw;
-    transform: translateX(0vw);
-    z-index: 10;
+    z-index: 99999;
   }
 }
