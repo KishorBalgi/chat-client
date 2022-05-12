@@ -1,18 +1,11 @@
 import { Sender } from "../../components/chat-sender/chat-sender.component";
 import { Receiver } from "../../components/chat-receiver/chat-receiver.component";
 import { encryptStorage } from "../../utils/encrypt_storage/encryptStorage";
+import { socket } from "../../pages/app/apppage.component";
 const user = encryptStorage.getItem("user");
 
-// function linkify(text) {
-//   var urlRegex =
-//     /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi;
-//   return text.replace(urlRegex, function (url) {
-//     return `<a href="${url}">${url}</a>`;
-//   });
-// }
-
 export const appendChatUtil = (chat, chats) => {
-  if (chat.msg === "") return chats;
+  console.log(chat);
   const today = new Date().toLocaleDateString("en-IN");
   const time = new Date().toLocaleTimeString("en-US", {
     hour12: false,
@@ -21,7 +14,9 @@ export const appendChatUtil = (chat, chats) => {
   });
   const obj = {
     id: chat.uid ? chat.uid : user.id,
-    message: chat.msg,
+    message: chat.msg ? chat.msg : null,
+    file: chat.file ? chat.file : null,
+    filetype: chat.filetype ? chat.filetype : null,
     timestamp: time,
   };
   const c =
@@ -32,8 +27,7 @@ export const appendChatUtil = (chat, chats) => {
     );
 
   if (chats.length === 0 || chats.at(-1).timestamp !== today) {
-    const chatToday = { _id: "t8gfu3ju90", chats: [c], timestamp: today };
-    console.log(chatToday);
+    const chatToday = { _id: "newchattoday", chats: [c], timestamp: today };
     return [...chats, chatToday];
   } else {
     chats.at(-1).chats = [...chats.at(-1).chats, c];
@@ -70,12 +64,14 @@ export const getCurrentChat = (users) => {
 
 export const deleteAMessage = (id, chats) => {
   chats = chats.map((c) => {
-    console.log(c);
     const i = c.chats.findIndex((c) => c.key === id);
-    console.log(i);
     if (i !== -1) c.chats.splice(i, 1);
-    console.log(c);
     return c;
   });
   return [...chats];
+};
+
+export const sendFile = (file, id, room) => {
+  const data = { file: file.file, filetype: file.filetype };
+  socket.emit("send-message", data, room, id);
 };

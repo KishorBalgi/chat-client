@@ -121,7 +121,7 @@ const Profile = ({
                 accept="image/*"
                 id="imgUploadInp"
                 onChange={(event) => {
-                  loadImagePreview(event, "imgUpload");
+                  loadImagePreview(event.target.files[0], "imgUpload");
                   setShowSaveImgBtn(true);
                 }}
               />

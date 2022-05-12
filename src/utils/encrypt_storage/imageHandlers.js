@@ -7,10 +7,9 @@ export function _arrayBufferToBase64(buffer) {
   }
   return window.btoa(binary);
 }
-export function loadImagePreview(event, id) {
-  console.log(URL.createObjectURL(event.target.files[0]));
+export function loadImagePreview(file, id) {
   var output = document.getElementById(id);
-  output.src = URL.createObjectURL(event.target.files[0]);
+  output.src = URL.createObjectURL(file);
   output.onload = function () {
     URL.revokeObjectURL(output.src); // free memory
   };

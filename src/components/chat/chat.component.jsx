@@ -13,27 +13,27 @@ import { socket } from "../../pages/app/apppage.component";
 import { createStructuredSelector } from "reselect";
 import { selectCurrentChat } from "../../redux/chats/chats.selector";
 
-const Chat = ({ appendChat, currentChat }) => {
+const Chat = ({ appendChat, currentChat, showFilePreview }) => {
   const [showDocs, setShowDocs] = useState(false);
   useEffect(() => {
     document
       .querySelector(".chats")
       .addEventListener("click", () => setShowDocs(false));
-    socket.on("receive-message", (msg, uid) => {
-      appendChat({ msg, uid });
+    socket.on("receive-message", (data, uid) => {
+      appendChat({ ...data, uid });
     });
   }, []);
   function handleChatSubmit(e) {
     e.preventDefault();
     const msg = e.target[0].value;
-    if (msg === "") return;
-    socket.emit("send-message", msg, socket.currentRoom, currentChat._id);
+    if (msg === "" || msg.replaceAll(" ", "") === "") return;
+    socket.emit("send-message", { msg }, socket.currentRoom, currentChat._id);
     appendChat({ msg });
     e.target[0].value = "";
   }
   return (
     <div className="chat">
-      {showDocs ? <Documents /> : null}
+      {showDocs ? <Documents showFilePreview={showFilePreview} /> : null}
       <div>
         <motion.button
           whileTap={{ scale: 0.9 }}

@@ -14,7 +14,7 @@ import { socket } from "../../pages/app/apppage.component";
 import { connect } from "react-redux";
 import { updateChatListOnNewMsg } from "../../redux/chat-list/chat-list.actions";
 
-const ChatMenu = ({ updateChatlist }) => {
+const ChatMenu = ({ updateChatlist, showFilePreview }) => {
   const [showProfile, setShowProfile] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [showTheme, setShowTheme] = useState(false);
@@ -94,7 +94,7 @@ const ChatMenu = ({ updateChatlist }) => {
         />
         <SearchBar />
       </div>
-      <ChatList />
+      <ChatList showFilePreview={showFilePreview} />
     </div>
   );
 };

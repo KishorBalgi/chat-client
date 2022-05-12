@@ -7,6 +7,9 @@ const INITIAL_STATE = {
   currentChat: null,
   isFetchingChats: false,
   errorMessage: undefined,
+  uploading: false,
+  uploadSuccess: false,
+  uploadFailed: false,
 };
 
 const chatsReducer = (state = INITIAL_STATE, action) => {
@@ -42,6 +45,30 @@ const chatsReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         chats: deleteAMessage(action.payload, state.chats),
+      };
+    case chatsTypes.UPLOADING_FILE:
+      return {
+        ...state,
+        uploading: true,
+      };
+    case chatsTypes.UPLOADING_FILE_SUCCESS:
+      return {
+        ...state,
+        uploading: false,
+        uploadSuccess: !state.uploadSuccess,
+      };
+    case chatsTypes.UPLOADING_FILE_FAILED:
+      return {
+        ...state,
+        uploading: false,
+        uploadFailed: true,
+      };
+    case chatsTypes.RESET_UPLOAD:
+      return {
+        ...state,
+        uploading: false,
+        uploadFailed: false,
+        uploadSuccess: false,
       };
     default:
       return {

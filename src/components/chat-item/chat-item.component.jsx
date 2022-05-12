@@ -13,8 +13,10 @@ const ChatItem = ({
   photo,
   fetchChatsAsync,
   setCurrentChat,
+  showFilePreview,
 }) => {
   function handleChatSelect(e) {
+    showFilePreview(false);
     const id = e.target.getAttribute("data-id");
     socket.emit("join-room", { id, currRoom: socket.currentRoom }, (msg) => {
       socket.currentRoom = msg;

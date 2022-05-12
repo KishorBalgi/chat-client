@@ -32,7 +32,17 @@
   color: var(--clr-font);
   font-size: 12px;
 }
-
+.file-view {
+  display: flex;
+  align-items: center;
+}
+.btn-file-download {
+  padding: 10px;
+  background-color: #fff;
+  margin-right: 15px;
+  border-radius: 50px;
+  cursor: pointer;
+}
 @media only screen and (max-width: 930px) {
   .chat-dis {
     margin: 10px 20px;

@@ -1,21 +1,78 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./document.styles.css";
 import { motion } from "framer-motion";
 // Icons:
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faImages, faFileAlt } from "@fortawesome/free-solid-svg-icons";
+import {
+  faImages,
+  faFileAlt,
+  faVideo,
+  faMusic,
+} from "@fortawesome/free-solid-svg-icons";
 
-const Documents = () => {
+const Documents = ({ showFilePreview }) => {
+  function resetForm(id) {
+    const imgInp = document.getElementById("chatImgInp");
+    const vidInp = document.getElementById("chatVidInp");
+    const audInp = document.getElementById("chatAudInp");
+    const fileInp = document.getElementById("chatFileInp");
+    imgInp.value = vidInp.value = audInp.value = fileInp.value = null;
+
+    switch (id) {
+      case "chatImgInp":
+        imgInp.click();
+        break;
+      case "chatVidInp":
+        vidInp.click();
+        break;
+      case "chatAudInp":
+        audInp.click();
+        break;
+      case "chatFileInp":
+        fileInp.click();
+        break;
+    }
+  }
+  function showPreview(e) {
+    showFilePreview(true);
+    sessionStorage.setItem("preview", URL.createObjectURL(e.target.files[0]));
+  }
   return (
     <div className="docs">
-      <input type="file" accept="image/*" id="chatImgInp" className="hidden" />
-      <input type="file" accept="image/*" id="chatFileInp" className="hidden" />
+      <input
+        type="file"
+        accept="image/*"
+        id="chatImgInp"
+        className="hidden"
+        onChange={(e) => showPreview(e)}
+      />
+      <input
+        type="file"
+        accept="video/*"
+        id="chatVidInp"
+        className="hidden"
+        onChange={(e) => showPreview(e)}
+      />
+      <input
+        type="file"
+        accept="audio/*"
+        id="chatAudInp"
+        className="hidden"
+        onChange={(e) => showPreview(e)}
+      />
+      <input
+        type="file"
+        accept="*"
+        id="chatFileInp"
+        className="hidden"
+        onChange={(e) => showPreview(e)}
+      />
       <ul className="docs-btns">
         <li>
           <motion.button
             whileTap={{ scale: 0.9 }}
             className="chat-docs btn-docs"
-            onClick={() => document.getElementById("chatImgInp").click()}
+            onClick={() => resetForm("chatImgInp")}
           >
             <FontAwesomeIcon icon={faImages} />
           </motion.button>
@@ -24,7 +81,25 @@ const Documents = () => {
           <motion.button
             whileTap={{ scale: 0.9 }}
             className="chat-docs btn-docs"
-            onClick={() => document.getElementById("chatFileInp").click()}
+            onClick={() => resetForm("chatVidInp")}
+          >
+            <FontAwesomeIcon icon={faVideo} />
+          </motion.button>
+        </li>
+        <li>
+          <motion.button
+            whileTap={{ scale: 0.9 }}
+            className="chat-docs btn-docs"
+            onClick={() => resetForm("chatAudInp")}
+          >
+            <FontAwesomeIcon icon={faMusic} />
+          </motion.button>
+        </li>
+        <li>
+          <motion.button
+            whileTap={{ scale: 0.9 }}
+            className="chat-docs btn-docs"
+            onClick={() => resetForm("chatFileInp")}
           >
             <FontAwesomeIcon icon={faFileAlt} />
           </motion.button>

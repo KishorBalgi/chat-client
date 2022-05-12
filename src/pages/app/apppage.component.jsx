@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./apppage.styles.css";
 import { useNavigate } from "react-router-dom";
 // Components:
@@ -24,6 +24,8 @@ socket.on("connect_error", (err) => {
   console.log(err);
 });
 const AppPage = ({ isLoggedIn, checkSavedLogin }) => {
+  const [showFilePreview, setShowFilePreview] = useState(false);
+
   let navigate = useNavigate();
   useEffect(async () => {
     if (!isLoggedIn)
@@ -35,8 +37,11 @@ const AppPage = ({ isLoggedIn, checkSavedLogin }) => {
   if (isLoggedIn) {
     return (
       <div className="app-page">
-        <ChatMenu />
-        <ChatBox />
+        <ChatMenu showFilePreview={setShowFilePreview} />
+        <ChatBox
+          showFilePreview={showFilePreview}
+          setShowFilePreview={setShowFilePreview}
+        />
       </div>
     );
   } else {

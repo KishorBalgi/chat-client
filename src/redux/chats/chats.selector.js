@@ -21,3 +21,18 @@ export const selectCurrentChat = createSelector(
   [selectChats],
   (chats) => chats.currentChat
 );
+
+export const selectUploading = createSelector(
+  [selectChats],
+  (chats) => chats.uploading
+);
+
+export const selectUploadSuccess = createSelector(
+  [selectChats],
+  (chats) => chats.uploadSuccess
+);
+
+export const selectUploadFailed = createSelector(
+  [selectChats],
+  (chats) => chats.uploadFailed
+);

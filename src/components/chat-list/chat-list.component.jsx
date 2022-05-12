@@ -15,7 +15,13 @@ import {
   selectErrMsg,
 } from "../../redux/chat-list/chat-list.selector";
 
-const ChatList = ({ chatlist, errMsg, fetchChatListAsync, updateChatlist }) => {
+const ChatList = ({
+  chatlist,
+  errMsg,
+  fetchChatListAsync,
+  updateChatlist,
+  showFilePreview,
+}) => {
   const { x, y, showMenu } = useChatRightClick();
   useEffect(() => {
     fetchChatListAsync();
@@ -26,7 +32,9 @@ const ChatList = ({ chatlist, errMsg, fetchChatListAsync, updateChatlist }) => {
       {chatlist === null ? (
         <ChatlistSkeleton />
       ) : (
-        chatlist.map((i) => <ChatItem {...i} key={i._id} />)
+        chatlist.map((i) => (
+          <ChatItem {...i} key={i._id} showFilePreview={showFilePreview} />
+        ))
       )}
     </div>
   );

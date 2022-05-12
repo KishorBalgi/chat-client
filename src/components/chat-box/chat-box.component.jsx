@@ -1,21 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import "./chat-box.styles.css";
 // Components:
 import ChatBar from "../chat-box-bar/chat-box-bar.component";
 import Chat from "../chat/chat.component";
 import Chats from "../chats/chats.component";
+import FilePreview from "../file-preview/file-preview.component";
 // Redux:
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectUserChats } from "../../redux/chats/chats.selector";
 import { selectCurrentChat } from "../../redux/chats/chats.selector";
 
-const ChatBox = ({ chats, currentChat }) => {
+const ChatBox = ({
+  chats,
+  currentChat,
+  showFilePreview,
+  setShowFilePreview,
+}) => {
   return chats && currentChat ? (
     <div className="chat-box">
       <ChatBar />
       <Chats />
-      <Chat />
+      <Chat showFilePreview={setShowFilePreview} />
+      {showFilePreview ? (
+        <FilePreview showFilePreview={setShowFilePreview} />
+      ) : null}
     </div>
   ) : (
     <div className="chat-box">
