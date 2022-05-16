@@ -77,6 +77,17 @@ export const delAccFailed = (err) => ({
   type: userTypes.DEL_ACC_FAILED,
   payload: err,
 });
+export const tokenSendStart = () => ({
+  type: userTypes.TOKEN_START,
+});
+export const tokenSentSuccess = () => ({
+  type: userTypes.TOKEN_SUCCESS,
+});
+
+export const tokenSentFail = (err) => ({
+  type: userTypes.TOKEN_FAIL,
+  payload: err,
+});
 // Login saved:
 export const checkSavedLogin = () => {
   return async (dispatch) => {
@@ -165,7 +176,9 @@ export const signup = (name, email, password) => {
           throw data;
         }
       })
-      .catch((err) => dispatch(signupFailed(err.message)));
+      .catch((err) => {
+        dispatch(signupFailed(err.message));
+      });
   };
 };
 
@@ -301,5 +314,17 @@ export const setTheme = (theme) => {
       root.style.setProperty("--clr-chat-border", "rgba(255, 255, 255, 0.2)");
       root.style.setProperty("--clr-box-shadow", "rgba(255, 255, 255, 0)");
     }
+  };
+};
+export const forgotPassword = (email) => {
+  return (dispatch) => {
+    dispatch(tokenSendStart());
+    api
+      .post("/api/v1/user/auth/forgotPassword", { email })
+      .then((res) => {
+        if (res.data.success !== "success") throw res.data;
+        dispatch(tokenSentSuccess());
+      })
+      .catch((err) => dispatch(tokenSentFail(err.message)));
   };
 };

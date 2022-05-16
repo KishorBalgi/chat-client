@@ -7,7 +7,7 @@ const user = encryptStorage.getItem("user");
 export const appendChatUtil = (chat, chats) => {
   console.log(chat);
   const today = new Date().toLocaleDateString("en-IN");
-  const time = new Date().toLocaleTimeString("en-US", {
+  const time = new Date().toLocaleTimeString("en-IN", {
     hour12: false,
     hour: "2-digit",
     minute: "2-digit",
@@ -39,7 +39,7 @@ export const modifyChats = (chats) => {
   let ch = chats.map((c) => {
     c.chats = c.chats.map((e) => {
       const date = new Date(e.timestamp);
-      const time = date.toLocaleTimeString("en-US", {
+      const time = date.toLocaleTimeString("en-IN", {
         hour12: false,
         hour: "2-digit",
         minute: "2-digit",

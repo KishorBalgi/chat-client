@@ -66,3 +66,15 @@ export const selectDelAccErr = createSelector(
   [selectUser],
   (user) => user.delAccErr
 );
+export const selectTokenStart = createSelector(
+  [selectUser],
+  (user) => user.tokenStart
+);
+export const selectTokenSuccess = createSelector(
+  [selectUser],
+  (user) => user.tokenSuccess
+);
+export const selectTokenErr = createSelector(
+  [selectUser],
+  (user) => user.tokenErr
+);

@@ -15,6 +15,9 @@ const INITIAL_STATE = {
   profPicUpdateErr: null,
   deletingAcc: false,
   delAccErr: null,
+  tokenSuccess: false,
+  tokenStart: false,
+  tokenErr: null,
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -110,6 +113,23 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return { ...state, deletingAcc: true };
     case userTypes.DEL_ACC_FAILED:
       return { ...state, deletingAcc: true, delAccErr: action.payload };
+    case userTypes.TOKEN_START:
+      return {
+        ...state,
+        tokenStart: true,
+      };
+    case userTypes.TOKEN_SUCCESS:
+      return {
+        ...state,
+        tokenStart: false,
+        tokenSuccess: true,
+      };
+    case userTypes.TOKEN_FAIL:
+      return {
+        ...state,
+        tokenStart: false,
+        tokenErr: action.payload,
+      };
     default:
       return state;
   }

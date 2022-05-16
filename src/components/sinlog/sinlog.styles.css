@@ -3,6 +3,7 @@
   width: 100vw;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
@@ -83,6 +84,9 @@ label {
 .btn-sinlog-active {
   background-color: var(--clr-primary-theme);
   color: #000;
+}
+.btn-sinlog-forgot-password {
+  padding: 15px 0 0 0;
 }
 .hidden {
   display: none;

@@ -12,6 +12,7 @@ import { setTheme } from "./redux/user/user.actions";
 import AboutPage from "./pages/about/aboutpage.component";
 import AppPage from "./pages/app/apppage.component";
 import HomePage from "./pages/home/homepage.component";
+import ForgotPassword from "./pages/forgot-password/forgot-password.component";
 
 function App({ setTheme }) {
   useEffect(() => {
@@ -26,6 +27,7 @@ function App({ setTheme }) {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/app" element={<AppPage />} />
         <Route path="/login" element={<Sinlog />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
       </Routes>
     </div>
   );

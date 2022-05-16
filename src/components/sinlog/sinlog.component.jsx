@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./sinlog.styles.css";
 // Components:
 import { Spinner } from "../spinner/spinner.component";
@@ -152,6 +153,9 @@ const Sinlog = ({
           </div>
         )}
       </div>
+      <Link to={"/forgot-password"}>
+        <button className="btn-sinlog-forgot-password">Forgot Password</button>
+      </Link>
     </div>
   );
 };
