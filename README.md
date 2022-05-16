@@ -1,5 +1,5 @@
 
-# Chat App Server
+# Chat App Client
 
 <p align="center">
   <img src="https://i.ibb.co/jLT6LbD/Chat-Icon-PNG.png" width="100" height="100" align="center">
