@@ -8,7 +8,10 @@ import FilePreview from "../file-preview/file-preview.component";
 // Redux:
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { selectUserChats } from "../../redux/chats/chats.selector";
+import {
+  selectIsFetchingChats,
+  selectUserChats,
+} from "../../redux/chats/chats.selector";
 import { selectCurrentChat } from "../../redux/chats/chats.selector";
 
 const ChatBox = ({
@@ -16,8 +19,9 @@ const ChatBox = ({
   currentChat,
   showFilePreview,
   setShowFilePreview,
+  isFetching,
 }) => {
-  return chats && currentChat ? (
+  return isFetching || (chats && currentChat) ? (
     <div className="chat-box">
       <ChatBar />
       <Chats />
@@ -43,5 +47,6 @@ const ChatBox = ({
 const mapStateToProps = createStructuredSelector({
   chats: selectUserChats,
   currentChat: selectCurrentChat,
+  isFetching: selectIsFetchingChats,
 });
 export default connect(mapStateToProps)(ChatBox);

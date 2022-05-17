@@ -1,14 +1,18 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { selectCurrentChat } from "../../redux/chats/chats.selector";
+import {
+  selectCurrentChat,
+  selectIsFetchingChats,
+} from "../../redux/chats/chats.selector";
 import "./chat-box-bar.styles.css";
 import { socket } from "../../pages/app/apppage.component";
 import { _arrayBufferToBase64 } from "../../utils/encrypt_storage/imageHandlers";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLongArrowAltLeft } from "@fortawesome/free-solid-svg-icons";
+import ChatBoxBarSkeleton from "../skeleton/chat-box-bar-skeleton.components";
 
-const ChatBar = ({ currentChat }) => {
+const ChatBar = ({ currentChat, isFetching }) => {
   useEffect(() => {
     const online = document.querySelector(".user-online");
     function setOnline() {
@@ -17,29 +21,33 @@ const ChatBar = ({ currentChat }) => {
     function setOffline() {
       online.style.backgroundColor = "var(--clr-primary-highlight)";
     }
-    socket.emit("isOnline", currentChat._id, (isOnline) => {
-      if (isOnline) setOnline();
-      else setOffline();
-    });
-    socket.on("offline", (id) => {
-      if (currentChat._id === id) setOffline();
-    });
-    socket.on("online", (id) => {
-      if (currentChat._id === id) setOnline();
-    });
+    if (currentChat) {
+      socket.emit("isOnline", currentChat._id, (isOnline) => {
+        if (isOnline) setOnline();
+        else setOffline();
+      });
+      socket.on("offline", (id) => {
+        if (currentChat._id === id) setOffline();
+      });
+      socket.on("online", (id) => {
+        if (currentChat._id === id) setOnline();
+      });
+    }
   }, [currentChat]);
   function handleChatBack() {
     document.querySelector(".chat-box").style.position = "relative";
   }
-
+  if (isFetching) {
+    return <ChatBoxBarSkeleton />;
+  }
   return currentChat ? (
     <div className="chat-box-bar">
       <div className="chat-box-bar-det">
-        {window.screen.width <= 800 ? (
+        {window.innerWidth <= 800 ? (
           <FontAwesomeIcon
             icon={faLongArrowAltLeft}
             className="chat-box-bar-back"
-            onClick={handleChatBack}
+            onClick={() => handleChatBack()}
           />
         ) : null}
 
@@ -63,5 +71,6 @@ const ChatBar = ({ currentChat }) => {
 
 const mapStateToProps = createStructuredSelector({
   currentChat: selectCurrentChat,
+  isFetching: selectIsFetchingChats,
 });
 export default connect(mapStateToProps)(ChatBar);

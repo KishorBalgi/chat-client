@@ -22,7 +22,7 @@ const ChatItem = ({
       socket.currentRoom = msg;
     });
     fetchChatsAsync(id);
-    if (window.screen.width <= 800)
+    if (window.innerWidth <= 800)
       document.querySelector(".chat-box").style.position = "absolute";
   }
   return (

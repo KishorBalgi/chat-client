@@ -28,3 +28,15 @@
   height: 10px;
   border-radius: 5px;
 }
+.skl-chat-box-bar-img {
+  width: 40px;
+  height: 40px;
+  margin: 0 10px;
+  border-radius: 50px;
+}
+.skl-chat-box-bar-name {
+  padding: 5px 10px;
+  width: 150px;
+  height: 10px;
+  border-radius: 50px;
+}

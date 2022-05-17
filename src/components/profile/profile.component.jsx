@@ -54,7 +54,7 @@ const Profile = ({
         <FontAwesomeIcon icon={faChevronCircleLeft} />
       </motion.button>
       <motion.div
-        animate={{ scale: 1.5 }}
+        animate={{ scale: 1.2 }}
         transition={{ duration: 0.5 }}
         className="profile-img"
       >
