@@ -5,7 +5,6 @@ import { socket } from "../../pages/app/apppage.component";
 const user = encryptStorage.getItem("user");
 
 export const appendChatUtil = (chat, chats) => {
-  console.log(chat);
   const today = new Date().toLocaleDateString("en-IN");
   const time = new Date().toLocaleTimeString("en-IN", {
     hour12: false,

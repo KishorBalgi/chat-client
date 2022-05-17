@@ -21,7 +21,7 @@ const ChatBox = ({
   setShowFilePreview,
   isFetching,
 }) => {
-  return isFetching || (chats && currentChat) ? (
+  return isFetching || chats ? (
     <div className="chat-box">
       <ChatBar />
       <Chats />
