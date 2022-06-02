@@ -20,7 +20,7 @@ The app is built using:
 The API is tested and documented using [Postman](https://www.postman.com/)
  - [API Documentation](https://documenter.getpostman.com/view/18487080/UyxjHSHK)
 ### App Demo
-
+ [YouTube - App Demo Video](https://youtu.be/egu07pDQkfQ)
 ### Author
 - [Kishor Balgi](https://github.com/KishorBalgi)
 - [My Portfolio](https://kishorbalgi.netlify.app/)
