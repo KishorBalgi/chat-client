@@ -15,7 +15,7 @@ import { encryptStorage } from "../../utils/encrypt_storage/encryptStorage";
 import io from "socket.io-client";
 const socketURL =
   process.env.NODE_ENV === "production"
-    ? "https://chat-box-app-server.herokuapp.com"
+    ? "https://chat-server-kb.onrender.com/"
     : "http://localhost:8000";
 export const socket = io(socketURL, {
   auth: { token: encryptStorage.getItem("jwt") },
