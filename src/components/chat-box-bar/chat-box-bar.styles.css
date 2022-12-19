@@ -28,6 +28,7 @@
   margin: 0 10px 0 0;
   font-size: 20px;
   color: var(--clr-font);
+  cursor: pointer;
 }
 .user-online {
   width: 12px;

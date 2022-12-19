@@ -1,6 +1,6 @@
 {
-  "name": "Chit Chat",
-  "short_name": "Chit Chat",
+  "name": "Chat App",
+  "short_name": "Chat App",
   "display": "standalone",
   "orientation": "portrait",
   "scope": "/",
