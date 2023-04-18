@@ -13,10 +13,10 @@ import { checkSavedLogin } from "../../redux/user/user.actions";
 // Socket:
 import { encryptStorage } from "../../utils/encrypt_storage/encryptStorage";
 import io from "socket.io-client";
-console.log(process.env.NODE_ENV);
+
 const socketURL =
   process.env.NODE_ENV === "production"
-    ? "https://chat-server-kb.vercel.app"
+    ? "https://chat-server-kb.vercel.app/"
     : "http://localhost:8000";
 export const socket = io(socketURL, {
   auth: { token: encryptStorage.getItem("jwt") },
