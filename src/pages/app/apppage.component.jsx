@@ -16,7 +16,7 @@ import io from "socket.io-client";
 
 const socketURL =
   process.env.NODE_ENV === "production"
-    ? "https://chat-server-kb.vercel.app/"
+    ? process.env.REACT_APP_HOST_URL
     : "http://localhost:8000";
 export const socket = io(socketURL, {
   auth: { token: encryptStorage.getItem("jwt") },
